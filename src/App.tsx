@@ -28,7 +28,7 @@ const queryClient = new QueryClient();
 const App = () => {
   const [marberParts, setMarberParts] = useState<DocumentedPart[]>([]);
   const [bladeParts, setBladeParts] = useState<DocumentedPart[]>([]);
-  const [language, setLanguage] = useState<'en' | 'de' | 'ro'>('en');
+  const [language, setLanguage] = useState<'en' | 'ar' | 'fr'>('en');
 
   useEffect(() => {
     const savedMarberParts = loadMarberParts();
@@ -36,7 +36,7 @@ const App = () => {
     const savedLanguage = loadLanguage();
     setMarberParts(savedMarberParts);
     setBladeParts(savedBladeParts);
-    setLanguage(savedLanguage);
+    setLanguage(savedLanguage as 'en' | 'ar' | 'fr');
   }, []);
 
   useEffect(() => {
