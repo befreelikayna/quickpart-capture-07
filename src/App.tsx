@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -7,12 +7,30 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Portfolio from "./pages/Portfolio";
 import { DocumentedPart } from "./types/parts";
+import { loadDocumentedParts, saveDocumentedParts, loadLanguage, saveLanguage } from "./utils/dataStorage";
 
 const queryClient = new QueryClient();
 
 const App = () => {
   const [documentedParts, setDocumentedParts] = useState<DocumentedPart[]>([]);
   const [language, setLanguage] = useState<'en' | 'de' | 'ro'>('en');
+
+  // Load saved data on initial render
+  useEffect(() => {
+    const savedParts = loadDocumentedParts();
+    const savedLanguage = loadLanguage();
+    setDocumentedParts(savedParts);
+    setLanguage(savedLanguage);
+  }, []);
+
+  // Save data whenever it changes
+  useEffect(() => {
+    saveDocumentedParts(documentedParts);
+  }, [documentedParts]);
+
+  useEffect(() => {
+    saveLanguage(language);
+  }, [language]);
 
   return (
     <QueryClientProvider client={queryClient}>
