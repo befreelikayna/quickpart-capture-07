@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { 
-  Sword, 
+  Disc, 
   Hammer, 
   Grid3X3, 
   Calculator
@@ -23,7 +23,7 @@ const Header = () => {
               <Button 
                 variant={location.pathname === '/blade' ? 'default' : 'ghost'}
               >
-                <Sword className="mr-2 h-4 w-4" />
+                <Disc className="mr-2 h-4 w-4" />
                 Blade
               </Button>
             </Link>
