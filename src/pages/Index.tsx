@@ -4,6 +4,7 @@ import PhotoUpload from '@/components/PhotoUpload';
 import PartForm, { PartFormData } from '@/components/PartForm';
 import { Button } from '@/components/ui/button';
 import { DocumentedPart } from '@/types/parts';
+import { Globe, Grid } from 'lucide-react';
 
 interface IndexProps {
   documentedParts: DocumentedPart[];
@@ -84,11 +85,16 @@ const Index = ({ documentedParts, setDocumentedParts, language, setLanguage }: I
           <Button
             variant="outline"
             onClick={handleLanguageChange}
+            className="flex items-center gap-2"
           >
-            {getLanguageButton()}
+            <Globe className="h-4 w-4 md:h-5 md:w-5" />
+            <span className="hidden md:inline">{getLanguageButton()}</span>
           </Button>
           <Link to="/portfolio">
-            <Button variant="outline">{t.viewPortfolio}</Button>
+            <Button variant="outline" className="flex items-center gap-2">
+              <Grid className="h-4 w-4 md:h-5 md:w-5" />
+              <span className="hidden md:inline">{t.viewPortfolio}</span>
+            </Button>
           </Link>
         </div>
       </div>
