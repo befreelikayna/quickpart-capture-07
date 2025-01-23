@@ -15,16 +15,16 @@ const Home = () => {
               Marber
             </Button>
           </Link>
-          <Link to="/">
-            <Button variant="outline" className="w-full">
-              <Grid3X3 className="mr-2 h-4 w-4" />
-              Part Documentation
-            </Button>
-          </Link>
           <Link to="/blade">
             <Button variant="outline" className="w-full">
               <Sword className="mr-2 h-4 w-4" />
               Blade
+            </Button>
+          </Link>
+          <Link to="/">
+            <Button variant="outline" className="w-full">
+              <Grid3X3 className="mr-2 h-4 w-4" />
+              Part Documentation
             </Button>
           </Link>
         </div>

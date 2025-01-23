@@ -22,20 +22,20 @@ const Header = () => {
                 Marber
               </Button>
             </Link>
-            <Link to="/">
-              <Button 
-                variant={location.pathname === '/' ? 'default' : 'ghost'}
-              >
-                <Grid3X3 className="mr-2 h-4 w-4" />
-                Part Documentation
-              </Button>
-            </Link>
             <Link to="/blade">
               <Button 
                 variant={location.pathname === '/blade' ? 'default' : 'ghost'}
               >
                 <Sword className="mr-2 h-4 w-4" />
                 Blade
+              </Button>
+            </Link>
+            <Link to="/">
+              <Button 
+                variant={location.pathname === '/' ? 'default' : 'ghost'}
+              >
+                <Grid3X3 className="mr-2 h-4 w-4" />
+                Part Documentation
               </Button>
             </Link>
           </div>
