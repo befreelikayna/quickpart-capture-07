@@ -8,6 +8,7 @@ import { toast } from 'sonner';
 interface PartFormProps {
   onSubmit: (data: PartFormData) => void;
   language?: 'en' | 'de' | 'ro';
+  type: 'blade' | 'marber';
 }
 
 export interface PartFormData {
@@ -22,6 +23,7 @@ export interface PartFormData {
 const translations = {
   en: {
     partName: 'Part Name',
+    category: 'Category',
     length: 'Length (cm)',
     width: 'Width (cm)',
     height: 'Height (cm)',
@@ -30,10 +32,13 @@ const translations = {
     documentPart: 'Document Part',
     enterPartName: 'Enter part name',
     additionalDetails: 'Additional details',
-    success: 'Part documented successfully!'
+    success: 'Part documented successfully!',
+    blade: 'Blade',
+    marber: 'Marber'
   },
   de: {
     partName: 'Teilename',
+    category: 'Kategorie',
     length: 'Länge (cm)',
     width: 'Breite (cm)',
     height: 'Höhe (cm)',
@@ -42,10 +47,13 @@ const translations = {
     documentPart: 'Teil dokumentieren',
     enterPartName: 'Teilename eingeben',
     additionalDetails: 'Zusätzliche Details',
-    success: 'Teil erfolgreich dokumentiert!'
+    success: 'Teil erfolgreich dokumentiert!',
+    blade: 'Klinge',
+    marber: 'Marber'
   },
   ro: {
     partName: 'Nume Piesă',
+    category: 'Categorie',
     length: 'Lungime (cm)',
     width: 'Lățime (cm)',
     height: 'Înălțime (cm)',
@@ -54,11 +62,13 @@ const translations = {
     documentPart: 'Documentează Piesa',
     enterPartName: 'Introduceți numele piesei',
     additionalDetails: 'Detalii suplimentare',
-    success: 'Piesă documentată cu succes!'
+    success: 'Piesă documentată cu succes!',
+    blade: 'Lamă',
+    marber: 'Marber'
   }
 };
 
-const PartForm = ({ onSubmit, language = 'en' }: PartFormProps) => {
+const PartForm = ({ onSubmit, language = 'en', type }: PartFormProps) => {
   const { register, handleSubmit, reset } = useForm<PartFormData>();
   const t = translations[language];
 
@@ -73,6 +83,16 @@ const PartForm = ({ onSubmit, language = 'en' }: PartFormProps) => {
       <div>
         <Label htmlFor="name">{t.partName}</Label>
         <Input id="name" {...register('name')} placeholder={t.enterPartName} required />
+      </div>
+
+      <div>
+        <Label htmlFor="category">{t.category}</Label>
+        <Input 
+          id="category" 
+          value={type === 'blade' ? t.blade : t.marber} 
+          className="bg-gray-100"
+          disabled 
+        />
       </div>
       
       <div className="grid grid-cols-2 gap-4">

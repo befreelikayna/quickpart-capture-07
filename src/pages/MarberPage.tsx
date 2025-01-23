@@ -59,7 +59,8 @@ const MarberPage = ({ documentedParts, setDocumentedParts, language, setLanguage
     if (currentImage) {
       setDocumentedParts(prev => [{
         data,
-        image: currentImage
+        image: currentImage,
+        type: 'marber'
       }, ...prev]);
       setCurrentImage(null);
     }
@@ -104,7 +105,7 @@ const MarberPage = ({ documentedParts, setDocumentedParts, language, setLanguage
         <div className="bg-card rounded-xl p-6 shadow-sm">
           <h2 className="text-xl font-semibold mb-4">{t.newPart}</h2>
           <PhotoUpload onPhotoSelect={handlePhotoSelect} />
-          <PartForm onSubmit={handlePartSubmit} language={language} />
+          <PartForm onSubmit={handlePartSubmit} language={language} type="marber" />
         </div>
       </div>
     </div>

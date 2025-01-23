@@ -105,7 +105,7 @@ const BladePage = ({ documentedParts, setDocumentedParts, language, setLanguage 
         <div className="bg-card rounded-xl p-6 shadow-sm">
           <h2 className="text-xl font-semibold mb-4">{t.newPart}</h2>
           <PhotoUpload onPhotoSelect={handlePhotoSelect} />
-          <PartForm onSubmit={handlePartSubmit} language={language} />
+          <PartForm onSubmit={handlePartSubmit} language={language} type="blade" />
         </div>
       </div>
     </div>
