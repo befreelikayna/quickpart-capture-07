@@ -21,9 +21,7 @@ const Header = () => {
   const handleLanguageChange = (lang: 'en' | 'ar' | 'fr') => {
     document.documentElement.lang = lang;
     document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-    // Update the language in localStorage
     localStorage.setItem('selectedLanguage', lang);
-    // Trigger a page reload to apply the new language
     window.location.reload();
   };
   
