@@ -33,5 +33,17 @@
   }
   body {
     @apply bg-background text-foreground;
+    background-image: url('https://www.focuspiedra.com/wp-content/uploads/2023/06/ascake-bizkaia.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    min-height: 100vh;
+  }
+  
+  #root {
+    background: rgba(255, 255, 255, 0.5);
+    min-height: 100vh;
   }
 }
