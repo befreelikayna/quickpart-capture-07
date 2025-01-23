@@ -11,14 +11,17 @@ interface PartCardProps {
 const translations = {
   en: {
     dimensions: 'Dimensions',
+    quantity: 'Quantity',
     notes: 'Notes'
   },
   de: {
     dimensions: 'Abmessungen',
+    quantity: 'Menge',
     notes: 'Notizen'
   },
   ro: {
     dimensions: 'Dimensiuni',
+    quantity: 'Cantitate',
     notes: 'Note'
   }
 };
@@ -43,6 +46,10 @@ const PartCard = ({ part, image, language = 'en' }: PartCardProps) => {
           <div>
             <p className="text-muted-foreground">{t.dimensions}</p>
             <p>{part.length} × {part.width} × {part.height} mm</p>
+          </div>
+          <div>
+            <p className="text-muted-foreground">{t.quantity}</p>
+            <p>{part.quantity}</p>
           </div>
           {part.notes && (
             <div>

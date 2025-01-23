@@ -15,6 +15,7 @@ export interface PartFormData {
   length: string;
   width: string;
   height: string;
+  quantity: string;
   notes: string;
 }
 
@@ -24,6 +25,7 @@ const translations = {
     length: 'Length (mm)',
     width: 'Width (mm)',
     height: 'Height (mm)',
+    quantity: 'Quantity',
     notes: 'Notes',
     documentPart: 'Document Part',
     enterPartName: 'Enter part name',
@@ -35,6 +37,7 @@ const translations = {
     length: 'Länge (mm)',
     width: 'Breite (mm)',
     height: 'Höhe (mm)',
+    quantity: 'Menge',
     notes: 'Notizen',
     documentPart: 'Teil dokumentieren',
     enterPartName: 'Teilename eingeben',
@@ -46,6 +49,7 @@ const translations = {
     length: 'Lungime (mm)',
     width: 'Lățime (mm)',
     height: 'Înălțime (mm)',
+    quantity: 'Cantitate',
     notes: 'Note',
     documentPart: 'Documentează Piesa',
     enterPartName: 'Introduceți numele piesei',
@@ -94,15 +98,28 @@ const PartForm = ({ onSubmit, language = 'en' }: PartFormProps) => {
         </div>
       </div>
       
-      <div>
-        <Label htmlFor="height">{t.height}</Label>
-        <Input
-          id="height"
-          type="number"
-          {...register('height')}
-          placeholder="0"
-          required
-        />
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <Label htmlFor="height">{t.height}</Label>
+          <Input
+            id="height"
+            type="number"
+            {...register('height')}
+            placeholder="0"
+            required
+          />
+        </div>
+        <div>
+          <Label htmlFor="quantity">{t.quantity}</Label>
+          <Input
+            id="quantity"
+            type="number"
+            {...register('quantity')}
+            placeholder="1"
+            min="1"
+            required
+          />
+        </div>
       </div>
 
       <div>
