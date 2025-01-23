@@ -8,6 +8,8 @@ import Header from "./components/Header";
 import Home from "./pages/Home";
 import Index from "./pages/Index";
 import Portfolio from "./pages/Portfolio";
+import MarberPage from "./pages/MarberPage";
+import BladePage from "./pages/BladePage";
 import { DocumentedPart } from "./types/parts";
 import { loadDocumentedParts, saveDocumentedParts, loadLanguage, saveLanguage } from "./utils/dataStorage";
 
@@ -64,8 +66,28 @@ const App = () => {
                 />
               } 
             />
-            <Route path="/marber" element={<div>Marber Page (Coming Soon)</div>} />
-            <Route path="/blade" element={<div>Blade Page (Coming Soon)</div>} />
+            <Route 
+              path="/marber" 
+              element={
+                <MarberPage 
+                  documentedParts={documentedParts}
+                  setDocumentedParts={setDocumentedParts}
+                  language={language}
+                  setLanguage={setLanguage}
+                />
+              } 
+            />
+            <Route 
+              path="/blade" 
+              element={
+                <BladePage 
+                  documentedParts={documentedParts}
+                  setDocumentedParts={setDocumentedParts}
+                  language={language}
+                  setLanguage={setLanguage}
+                />
+              } 
+            />
             <Route path="*" element={<Navigate to="/home" replace />} />
           </Routes>
         </BrowserRouter>
