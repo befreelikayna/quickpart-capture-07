@@ -48,7 +48,7 @@ export const loadBladeParts = (): DocumentedPart[] => {
   return [];
 };
 
-export const saveLanguage = (language: 'en' | 'de' | 'ro') => {
+export const saveLanguage = (language: 'en' | 'ar' | 'fr') => {
   try {
     localStorage.setItem(LANGUAGE_KEY, language);
     console.log('Saved language:', language);
@@ -57,9 +57,9 @@ export const saveLanguage = (language: 'en' | 'de' | 'ro') => {
   }
 };
 
-export const loadLanguage = (): 'en' | 'de' | 'ro' => {
+export const loadLanguage = (): 'en' | 'ar' | 'fr' => {
   try {
-    const savedLanguage = localStorage.getItem(LANGUAGE_KEY) as 'en' | 'de' | 'ro';
+    const savedLanguage = localStorage.getItem(LANGUAGE_KEY) as 'en' | 'ar' | 'fr';
     if (savedLanguage) {
       console.log('Loaded language:', savedLanguage);
       return savedLanguage;
