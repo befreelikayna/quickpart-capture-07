@@ -22,9 +22,9 @@ export interface PartFormData {
 const translations = {
   en: {
     partName: 'Part Name',
-    length: 'Length (mm)',
-    width: 'Width (mm)',
-    height: 'Height (mm)',
+    length: 'Length (cm)',
+    width: 'Width (cm)',
+    height: 'Height (cm)',
     quantity: 'Quantity',
     notes: 'Notes',
     documentPart: 'Document Part',
@@ -34,9 +34,9 @@ const translations = {
   },
   de: {
     partName: 'Teilename',
-    length: 'Länge (mm)',
-    width: 'Breite (mm)',
-    height: 'Höhe (mm)',
+    length: 'Länge (cm)',
+    width: 'Breite (cm)',
+    height: 'Höhe (cm)',
     quantity: 'Menge',
     notes: 'Notizen',
     documentPart: 'Teil dokumentieren',
@@ -46,9 +46,9 @@ const translations = {
   },
   ro: {
     partName: 'Nume Piesă',
-    length: 'Lungime (mm)',
-    width: 'Lățime (mm)',
-    height: 'Înălțime (mm)',
+    length: 'Lungime (cm)',
+    width: 'Lățime (cm)',
+    height: 'Înălțime (cm)',
     quantity: 'Cantitate',
     notes: 'Note',
     documentPart: 'Documentează Piesa',
