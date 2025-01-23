@@ -15,8 +15,8 @@ import {
 interface BladePageProps {
   documentedParts: DocumentedPart[];
   setDocumentedParts: React.Dispatch<React.SetStateAction<DocumentedPart[]>>;
-  language: 'en' | 'de' | 'ro';
-  setLanguage: React.Dispatch<React.SetStateAction<'en' | 'de' | 'ro'>>;
+  language: 'en' | 'ar' | 'fr';
+  setLanguage: React.Dispatch<React.SetStateAction<'en' | 'ar' | 'fr'>>;
 }
 
 const translations = {
@@ -25,22 +25,22 @@ const translations = {
     viewPortfolio: 'View Portfolio',
     newPart: 'Document New Blade'
   },
-  de: {
-    title: 'Klingen-Dokumentation',
-    viewPortfolio: 'Portfolio ansehen',
-    newPart: 'Neue Klinge dokumentieren'
+  ar: {
+    title: 'توثيق الشفرة',
+    viewPortfolio: 'عرض المحفظة',
+    newPart: 'توثيق شفرة جديدة'
   },
-  ro: {
-    title: 'Documentație Lamă',
-    viewPortfolio: 'Vezi Portofoliul',
-    newPart: 'Documentează Lamă Nouă'
+  fr: {
+    title: 'Documentation Lame',
+    viewPortfolio: 'Voir Portfolio',
+    newPart: 'Documenter Nouvelle Lame'
   }
 };
 
 const languageNames = {
   en: 'English',
-  de: 'Deutsch',
-  ro: 'Română'
+  ar: 'العربية',
+  fr: 'Français'
 };
 
 const BladePage = ({ documentedParts, setDocumentedParts, language, setLanguage }: BladePageProps) => {
@@ -84,11 +84,11 @@ const BladePage = ({ documentedParts, setDocumentedParts, language, setLanguage 
               <DropdownMenuItem onClick={() => setLanguage('en')}>
                 English
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setLanguage('de')}>
-                Deutsch
+              <DropdownMenuItem onClick={() => setLanguage('ar')}>
+                العربية
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setLanguage('ro')}>
-                Română
+              <DropdownMenuItem onClick={() => setLanguage('fr')}>
+                Français
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

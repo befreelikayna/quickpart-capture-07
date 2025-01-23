@@ -8,7 +8,7 @@ import { loadMarberParts, saveMarberParts } from '@/utils/dataStorage';
 
 interface MarberPortfolioProps {
   documentedParts: DocumentedPart[];
-  language: 'en' | 'de' | 'ro';
+  language: 'en' | 'ar' | 'fr';
   setDocumentedParts: React.Dispatch<React.SetStateAction<DocumentedPart[]>>;
 }
 
@@ -20,19 +20,19 @@ const translations = {
     clearAll: 'Clear All',
     clearConfirm: 'All marber parts have been cleared'
   },
-  de: {
-    title: 'Marber Portfolio',
-    backToCapture: 'Zurück zur Erfassung',
-    noParts: 'Noch keine Marber-Teile dokumentiert',
-    clearAll: 'Alles löschen',
-    clearConfirm: 'Alle Marber-Teile wurden gelöscht'
+  ar: {
+    title: 'محفظة ماربر',
+    backToCapture: 'العودة إلى التصوير',
+    noParts: 'لم يتم توثيق أي قطع ماربر بعد',
+    clearAll: 'مسح الكل',
+    clearConfirm: 'تم مسح جميع قطع ماربر'
   },
-  ro: {
-    title: 'Portofoliu Marber',
-    backToCapture: 'Înapoi la Captură',
-    noParts: 'Nicio piesă marber documentată încă',
-    clearAll: 'Șterge tot',
-    clearConfirm: 'Toate piesele marber au fost șterse'
+  fr: {
+    title: 'Portfolio Marber',
+    backToCapture: 'Retour à la Capture',
+    noParts: 'Aucune pièce marber documentée',
+    clearAll: 'Tout Effacer',
+    clearConfirm: 'Toutes les pièces marber ont été effacées'
   }
 };
 

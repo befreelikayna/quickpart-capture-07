@@ -13,8 +13,8 @@ import {
 interface IndexProps {
   documentedParts: DocumentedPart[];
   setDocumentedParts: React.Dispatch<React.SetStateAction<DocumentedPart[]>>;
-  language: 'en' | 'de' | 'ro';
-  setLanguage: React.Dispatch<React.SetStateAction<'en' | 'de' | 'ro'>>;
+  language: 'en' | 'ar' | 'fr';
+  setLanguage: React.Dispatch<React.SetStateAction<'en' | 'ar' | 'fr'>>;
 }
 
 const translations = {
@@ -26,28 +26,28 @@ const translations = {
     noBladeItems: 'No blade parts documented yet',
     noMarberItems: 'No marber parts documented yet'
   },
-  de: {
-    title: 'Portfolio',
-    noParts: 'Noch keine Teile dokumentiert',
-    bladeCategory: 'Klingen-Teile',
-    marberCategory: 'Marber-Teile',
-    noBladeItems: 'Noch keine Klingen-Teile dokumentiert',
-    noMarberItems: 'Noch keine Marber-Teile dokumentiert'
+  ar: {
+    title: 'المحفظة',
+    noParts: 'لم يتم توثيق أي قطع بعد',
+    bladeCategory: 'قطع الشفرة',
+    marberCategory: 'قطع ماربر',
+    noBladeItems: 'لم يتم توثيق أي قطع شفرة بعد',
+    noMarberItems: 'لم يتم توثيق أي قطع ماربر بعد'
   },
-  ro: {
-    title: 'Portofoliu',
-    noParts: 'Nicio piesă documentată încă',
-    bladeCategory: 'Piese Lamă',
-    marberCategory: 'Piese Marber',
-    noBladeItems: 'Nicio piesă lamă documentată încă',
-    noMarberItems: 'Nicio piesă marber documentată încă'
+  fr: {
+    title: 'Portfolio',
+    noParts: 'Aucune pièce documentée',
+    bladeCategory: 'Pièces Lame',
+    marberCategory: 'Pièces Marber',
+    noBladeItems: 'Aucune pièce lame documentée',
+    noMarberItems: 'Aucune pièce marber documentée'
   }
 };
 
 const languageNames = {
   en: 'English',
-  de: 'Deutsch',
-  ro: 'Română'
+  ar: 'العربية',
+  fr: 'Français'
 };
 
 const Index = ({ documentedParts, language, setLanguage }: IndexProps) => {
@@ -75,11 +75,11 @@ const Index = ({ documentedParts, language, setLanguage }: IndexProps) => {
             <DropdownMenuItem onClick={() => setLanguage('en')}>
               English
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => setLanguage('de')}>
-              Deutsch
+            <DropdownMenuItem onClick={() => setLanguage('ar')}>
+              العربية
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => setLanguage('ro')}>
-              Română
+            <DropdownMenuItem onClick={() => setLanguage('fr')}>
+              Français
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

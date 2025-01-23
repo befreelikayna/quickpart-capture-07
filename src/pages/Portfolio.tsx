@@ -7,7 +7,7 @@ import { useToast } from '@/components/ui/use-toast';
 
 interface PortfolioProps {
   documentedParts: DocumentedPart[];
-  language: 'en' | 'de' | 'ro';
+  language: 'en' | 'ar' | 'fr';
   setDocumentedParts?: React.Dispatch<React.SetStateAction<DocumentedPart[]>>;
 }
 
@@ -19,19 +19,19 @@ const translations = {
     clearAll: 'Clear All',
     clearConfirm: 'All parts have been cleared'
   },
-  de: {
-    title: 'Portfolio',
-    backToCapture: 'Zurück zur Erfassung',
-    noParts: 'Noch keine Teile dokumentiert',
-    clearAll: 'Alles löschen',
-    clearConfirm: 'Alle Teile wurden gelöscht'
+  ar: {
+    title: 'المحفظة',
+    backToCapture: 'العودة إلى التصوير',
+    noParts: 'لم يتم توثيق أي قطع بعد',
+    clearAll: 'مسح الكل',
+    clearConfirm: 'تم مسح جميع القطع'
   },
-  ro: {
-    title: 'Portofoliu',
-    backToCapture: 'Înapoi la Captură',
-    noParts: 'Nicio piesă documentată încă',
-    clearAll: 'Șterge tot',
-    clearConfirm: 'Toate piesele au fost șterse'
+  fr: {
+    title: 'Portfolio',
+    backToCapture: 'Retour à la Capture',
+    noParts: 'Aucune pièce documentée',
+    clearAll: 'Tout Effacer',
+    clearConfirm: 'Toutes les pièces ont été effacées'
   }
 };
 

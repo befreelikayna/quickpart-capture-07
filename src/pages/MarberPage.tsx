@@ -15,8 +15,8 @@ import {
 interface MarberPageProps {
   documentedParts: DocumentedPart[];
   setDocumentedParts: React.Dispatch<React.SetStateAction<DocumentedPart[]>>;
-  language: 'en' | 'de' | 'ro';
-  setLanguage: React.Dispatch<React.SetStateAction<'en' | 'de' | 'ro'>>;
+  language: 'en' | 'ar' | 'fr';
+  setLanguage: React.Dispatch<React.SetStateAction<'en' | 'ar' | 'fr'>>;
 }
 
 const translations = {
@@ -25,22 +25,22 @@ const translations = {
     viewPortfolio: 'View Portfolio',
     newPart: 'Document New Marber'
   },
-  de: {
-    title: 'Marber-Dokumentation',
-    viewPortfolio: 'Portfolio ansehen',
-    newPart: 'Neuen Marber dokumentieren'
+  ar: {
+    title: 'توثيق ماربر',
+    viewPortfolio: 'عرض المحفظة',
+    newPart: 'توثيق ماربر جديد'
   },
-  ro: {
-    title: 'Documentație Marber',
-    viewPortfolio: 'Vezi Portofoliul',
-    newPart: 'Documentează Marber Nou'
+  fr: {
+    title: 'Documentation Marber',
+    viewPortfolio: 'Voir Portfolio',
+    newPart: 'Documenter Nouveau Marber'
   }
 };
 
 const languageNames = {
   en: 'English',
-  de: 'Deutsch',
-  ro: 'Română'
+  ar: 'العربية',
+  fr: 'Français'
 };
 
 const MarberPage = ({ documentedParts, setDocumentedParts, language, setLanguage }: MarberPageProps) => {
@@ -84,11 +84,11 @@ const MarberPage = ({ documentedParts, setDocumentedParts, language, setLanguage
               <DropdownMenuItem onClick={() => setLanguage('en')}>
                 English
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setLanguage('de')}>
-                Deutsch
+              <DropdownMenuItem onClick={() => setLanguage('ar')}>
+                العربية
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setLanguage('ro')}>
-                Română
+              <DropdownMenuItem onClick={() => setLanguage('fr')}>
+                Français
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

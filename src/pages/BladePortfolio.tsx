@@ -8,7 +8,7 @@ import { loadBladeParts, saveBladeParts } from '@/utils/dataStorage';
 
 interface BladePortfolioProps {
   documentedParts: DocumentedPart[];
-  language: 'en' | 'de' | 'ro';
+  language: 'en' | 'ar' | 'fr';
   setDocumentedParts: React.Dispatch<React.SetStateAction<DocumentedPart[]>>;
 }
 
@@ -20,19 +20,19 @@ const translations = {
     clearAll: 'Clear All',
     clearConfirm: 'All blade parts have been cleared'
   },
-  de: {
-    title: 'Klingen Portfolio',
-    backToCapture: 'Zurück zur Erfassung',
-    noParts: 'Noch keine Klingen-Teile dokumentiert',
-    clearAll: 'Alles löschen',
-    clearConfirm: 'Alle Klingen-Teile wurden gelöscht'
+  ar: {
+    title: 'محفظة الشفرات',
+    backToCapture: 'العودة إلى التصوير',
+    noParts: 'لم يتم توثيق أي شفرات بعد',
+    clearAll: 'مسح الكل',
+    clearConfirm: 'تم مسح جميع الشفرات'
   },
-  ro: {
-    title: 'Portofoliu Lamă',
-    backToCapture: 'Înapoi la Captură',
-    noParts: 'Nicio piesă lamă documentată încă',
-    clearAll: 'Șterge tot',
-    clearConfirm: 'Toate piesele lamă au fost șterse'
+  fr: {
+    title: 'Portfolio Lames',
+    backToCapture: 'Retour à la Capture',
+    noParts: 'Aucune lame documentée',
+    clearAll: 'Tout Effacer',
+    clearConfirm: 'Toutes les lames ont été effacées'
   }
 };
 
