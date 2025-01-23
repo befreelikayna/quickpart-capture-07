@@ -4,6 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { toast } from 'sonner';
 import Header from "./components/Header";
 import Home from "./pages/Home";
 import Index from "./pages/Index";
@@ -31,12 +32,49 @@ const App = () => {
   const [language, setLanguage] = useState<'en' | 'ar' | 'fr'>('en');
 
   useEffect(() => {
+    const detectLanguage = async () => {
+      try {
+        const response = await fetch('https://ipapi.co/json/');
+        const data = await response.json();
+        
+        // Map country codes to our supported languages
+        const countryToLanguage: { [key: string]: 'en' | 'ar' | 'fr' } = {
+          'US': 'en',
+          'GB': 'en',
+          'SA': 'ar',
+          'AE': 'ar',
+          'EG': 'ar',
+          'FR': 'fr',
+          'CA': 'fr',
+        };
+
+        const detectedLanguage = countryToLanguage[data.country_code] || 'en';
+        
+        // Only set language if it hasn't been manually set before
+        const savedLanguage = loadLanguage();
+        if (!savedLanguage) {
+          setLanguage(detectedLanguage);
+          saveLanguage(detectedLanguage);
+          toast.success(`Language automatically set to ${detectedLanguage}`);
+        } else {
+          setLanguage(savedLanguage as 'en' | 'ar' | 'fr');
+        }
+      } catch (error) {
+        console.error('Error detecting language:', error);
+        // Fallback to saved language or default
+        const savedLanguage = loadLanguage();
+        setLanguage(savedLanguage as 'en' | 'ar' | 'fr' || 'en');
+      }
+    };
+
+    detectLanguage();
+  }, []);
+
+  useEffect(() => {
     const savedMarberParts = loadMarberParts();
     const savedBladeParts = loadBladeParts();
-    const savedLanguage = loadLanguage();
     setMarberParts(savedMarberParts);
     setBladeParts(savedBladeParts);
-    setLanguage(savedLanguage as 'en' | 'ar' | 'fr');
   }, []);
 
   useEffect(() => {
@@ -49,6 +87,8 @@ const App = () => {
 
   useEffect(() => {
     saveLanguage(language);
+    // Set HTML dir attribute for RTL support
+    document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
   }, [language]);
 
   return (
