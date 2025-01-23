@@ -12,26 +12,40 @@ import MarberPage from "./pages/MarberPage";
 import BladePage from "./pages/BladePage";
 import Calculator from "./pages/Calculator";
 import { DocumentedPart } from "./types/parts";
-import { loadDocumentedParts, saveDocumentedParts, loadLanguage, saveLanguage } from "./utils/dataStorage";
+import { 
+  loadMarberParts, 
+  saveMarberParts, 
+  loadBladeParts, 
+  saveBladeParts,
+  loadLanguage, 
+  saveLanguage 
+} from "./utils/dataStorage";
 
 const queryClient = new QueryClient();
 
 const App = () => {
-  const [documentedParts, setDocumentedParts] = useState<DocumentedPart[]>([]);
+  const [marberParts, setMarberParts] = useState<DocumentedPart[]>([]);
+  const [bladeParts, setBladeParts] = useState<DocumentedPart[]>([]);
   const [language, setLanguage] = useState<'en' | 'de' | 'ro'>('en');
 
   // Load saved data on initial render
   useEffect(() => {
-    const savedParts = loadDocumentedParts();
+    const savedMarberParts = loadMarberParts();
+    const savedBladeParts = loadBladeParts();
     const savedLanguage = loadLanguage();
-    setDocumentedParts(savedParts);
+    setMarberParts(savedMarberParts);
+    setBladeParts(savedBladeParts);
     setLanguage(savedLanguage);
   }, []);
 
   // Save data whenever it changes
   useEffect(() => {
-    saveDocumentedParts(documentedParts);
-  }, [documentedParts]);
+    saveMarberParts(marberParts);
+  }, [marberParts]);
+
+  useEffect(() => {
+    saveBladeParts(bladeParts);
+  }, [bladeParts]);
 
   useEffect(() => {
     saveLanguage(language);
@@ -51,8 +65,8 @@ const App = () => {
               path="/" 
               element={
                 <Index 
-                  documentedParts={documentedParts} 
-                  setDocumentedParts={setDocumentedParts}
+                  documentedParts={[...marberParts, ...bladeParts]} 
+                  setDocumentedParts={() => {}} // Disabled as we now handle parts separately
                   language={language}
                   setLanguage={setLanguage}
                 />
@@ -62,8 +76,8 @@ const App = () => {
               path="/portfolio" 
               element={
                 <Portfolio 
-                  documentedParts={documentedParts}
-                  setDocumentedParts={setDocumentedParts}
+                  documentedParts={[...marberParts, ...bladeParts]}
+                  setDocumentedParts={() => {}} // Disabled as we now handle parts separately
                   language={language}
                 />
               } 
@@ -72,8 +86,8 @@ const App = () => {
               path="/marber" 
               element={
                 <MarberPage 
-                  documentedParts={documentedParts}
-                  setDocumentedParts={setDocumentedParts}
+                  documentedParts={marberParts}
+                  setDocumentedParts={setMarberParts}
                   language={language}
                   setLanguage={setLanguage}
                 />
@@ -83,8 +97,8 @@ const App = () => {
               path="/blade" 
               element={
                 <BladePage 
-                  documentedParts={documentedParts}
-                  setDocumentedParts={setDocumentedParts}
+                  documentedParts={bladeParts}
+                  setDocumentedParts={setBladeParts}
                   language={language}
                   setLanguage={setLanguage}
                 />
