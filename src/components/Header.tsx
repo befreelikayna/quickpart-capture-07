@@ -15,8 +15,13 @@ const Header = () => {
     <header className="border-b">
       <div className="container mx-auto px-4">
         <nav className="flex items-center justify-between h-16">
-          <Link to="/home" className="font-bold text-lg">
-            Home
+          <Link to="/home" className="flex items-center gap-2">
+            <img 
+              src="/lovable-uploads/0a32041a-b5ba-43b3-808b-11f1f9068ecc.png" 
+              alt="Logo" 
+              className="h-8 w-auto"
+            />
+            <span className="font-bold text-lg">Home</span>
           </Link>
           <div className="flex gap-4">
             <Link to="/blade">
