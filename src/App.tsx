@@ -34,8 +34,14 @@ const App = () => {
   useEffect(() => {
     const detectLanguage = async () => {
       try {
-        const response = await fetch('https://ipapi.co/json/');
-        const data = await response.json();
+        // Using the Cloudflare-based geolocation which is more reliable
+        const response = await fetch('https://cloudflare.com/cdn-cgi/trace');
+        const data = await response.text();
+        
+        // Parse the response text to get the country code
+        const lines = data.split('\n');
+        const locLine = lines.find(line => line.startsWith('loc='));
+        const countryCode = locLine ? locLine.split('=')[1] : 'US';
         
         // Map country codes to our supported languages
         const countryToLanguage: { [key: string]: 'en' | 'ar' | 'fr' } = {
@@ -48,7 +54,7 @@ const App = () => {
           'CA': 'fr',
         };
 
-        const detectedLanguage = countryToLanguage[data.country_code] || 'en';
+        const detectedLanguage = countryToLanguage[countryCode] || 'en';
         
         // Only set language if it hasn't been manually set before
         const savedLanguage = loadLanguage();
@@ -63,7 +69,14 @@ const App = () => {
         console.error('Error detecting language:', error);
         // Fallback to saved language or default
         const savedLanguage = loadLanguage();
-        setLanguage(savedLanguage as 'en' | 'ar' | 'fr' || 'en');
+        if (savedLanguage) {
+          setLanguage(savedLanguage as 'en' | 'ar' | 'fr');
+        } else {
+          // If no saved language and detection fails, default to English
+          setLanguage('en');
+          saveLanguage('en');
+          toast.error('Could not detect location, defaulting to English');
+        }
       }
     };
 
