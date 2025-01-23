@@ -112,15 +112,15 @@ const App = () => {
         <BrowserRouter>
           <Header />
           <Routes>
-            <Route path="/home" element={<Home />} />
-            <Route path="/calculator" element={<Calculator />} />
-            <Route path="/" element={<Index documentedParts={[...marberParts, ...bladeParts]} setDocumentedParts={() => {}} language={language} setLanguage={setLanguage} />} />
+            <Route path="/" element={<Home />} />
             <Route path="/portfolio" element={<Portfolio documentedParts={[...marberParts, ...bladeParts]} setDocumentedParts={() => {}} language={language} />} />
+            <Route path="/calculator" element={<Calculator />} />
+            <Route path="/parts" element={<Index documentedParts={[...marberParts, ...bladeParts]} setDocumentedParts={() => {}} language={language} setLanguage={setLanguage} />} />
             <Route path="/marber" element={<MarberPage documentedParts={marberParts} setDocumentedParts={setMarberParts} language={language} setLanguage={setLanguage} />} />
             <Route path="/marber-portfolio" element={<MarberPortfolio documentedParts={marberParts} setDocumentedParts={setMarberParts} language={language} />} />
             <Route path="/blade" element={<BladePage documentedParts={bladeParts} setDocumentedParts={setBladeParts} language={language} setLanguage={setLanguage} />} />
             <Route path="/blade-portfolio" element={<BladePortfolio documentedParts={bladeParts} setDocumentedParts={setBladeParts} language={language} />} />
-            <Route path="*" element={<Navigate to="/home" replace />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </BrowserRouter>
       </TooltipProvider>
