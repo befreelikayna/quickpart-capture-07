@@ -7,7 +7,7 @@ import { toast } from 'sonner';
 
 interface PartFormProps {
   onSubmit: (data: PartFormData) => void;
-  language?: 'en' | 'de' | 'ro';
+  language?: 'en' | 'ar' | 'fr';
   type: 'blade' | 'marber';
 }
 
@@ -36,34 +36,34 @@ const translations = {
     blade: 'Blade',
     marber: 'Marber'
   },
-  de: {
-    partName: 'Teilename',
-    category: 'Kategorie',
-    length: 'Länge (cm)',
-    width: 'Breite (cm)',
-    height: 'Höhe (cm)',
-    quantity: 'Menge',
-    notes: 'Notizen',
-    documentPart: 'Teil dokumentieren',
-    enterPartName: 'Teilename eingeben',
-    additionalDetails: 'Zusätzliche Details',
-    success: 'Teil erfolgreich dokumentiert!',
-    blade: 'Klinge',
-    marber: 'Marber'
+  ar: {
+    partName: 'اسم القطعة',
+    category: 'الفئة',
+    length: 'الطول (سم)',
+    width: 'العرض (سم)',
+    height: 'الارتفاع (سم)',
+    quantity: 'الكمية',
+    notes: 'ملاحظات',
+    documentPart: 'توثيق القطعة',
+    enterPartName: 'أدخل اسم القطعة',
+    additionalDetails: 'تفاصيل إضافية',
+    success: 'تم توثيق القطعة بنجاح!',
+    blade: 'شفرة',
+    marber: 'ماربر'
   },
-  ro: {
-    partName: 'Nume Piesă',
-    category: 'Categorie',
-    length: 'Lungime (cm)',
-    width: 'Lățime (cm)',
-    height: 'Înălțime (cm)',
-    quantity: 'Cantitate',
-    notes: 'Note',
-    documentPart: 'Documentează Piesa',
-    enterPartName: 'Introduceți numele piesei',
-    additionalDetails: 'Detalii suplimentare',
-    success: 'Piesă documentată cu succes!',
-    blade: 'Lamă',
+  fr: {
+    partName: 'Nom de la pièce',
+    category: 'Catégorie',
+    length: 'Longueur (cm)',
+    width: 'Largeur (cm)',
+    height: 'Hauteur (cm)',
+    quantity: 'Quantité',
+    notes: 'Notes',
+    documentPart: 'Documenter la pièce',
+    enterPartName: 'Entrez le nom de la pièce',
+    additionalDetails: 'Détails supplémentaires',
+    success: 'Pièce documentée avec succès!',
+    blade: 'Lame',
     marber: 'Marber'
   }
 };

@@ -5,7 +5,7 @@ import { PartFormData } from './PartForm';
 interface PartCardProps {
   part: PartFormData;
   image: string;
-  language?: 'en' | 'de' | 'ro';
+  language?: 'en' | 'ar' | 'fr';
 }
 
 const translations = {
@@ -14,15 +14,15 @@ const translations = {
     quantity: 'Quantity',
     notes: 'Notes'
   },
-  de: {
-    dimensions: 'Abmessungen',
-    quantity: 'Menge',
-    notes: 'Notizen'
+  ar: {
+    dimensions: 'الأبعاد',
+    quantity: 'الكمية',
+    notes: 'ملاحظات'
   },
-  ro: {
-    dimensions: 'Dimensiuni',
-    quantity: 'Cantitate',
-    notes: 'Note'
+  fr: {
+    dimensions: 'Dimensions',
+    quantity: 'Quantité',
+    notes: 'Notes'
   }
 };
 
