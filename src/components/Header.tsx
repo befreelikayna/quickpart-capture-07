@@ -41,20 +41,20 @@ const Header = () => {
                 Blade
               </Button>
             </Link>
-            <Link to="/">
-              <Button 
-                variant={location.pathname === '/' ? 'default' : 'ghost'}
-              >
-                <Grid3X3 className="mr-2 h-4 w-4" />
-                Portfolio
-              </Button>
-            </Link>
             <Link to="/marber">
               <Button 
                 variant={location.pathname === '/marber' ? 'default' : 'ghost'}
               >
                 <Hammer className="mr-2 h-4 w-4" />
                 Marber
+              </Button>
+            </Link>
+            <Link to="/">
+              <Button 
+                variant={location.pathname === '/' ? 'default' : 'ghost'}
+              >
+                <Grid3X3 className="mr-2 h-4 w-4" />
+                Portfolio
               </Button>
             </Link>
             <Link to="/calculator">
