@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { Sword, Hammer, Grid3X3 } from 'lucide-react';
 
 const Header = () => {
   const location = useLocation();
@@ -17,6 +18,7 @@ const Header = () => {
               <Button 
                 variant={location.pathname === '/marber' ? 'default' : 'ghost'}
               >
+                <Hammer className="mr-2 h-4 w-4" />
                 Marber
               </Button>
             </Link>
@@ -24,14 +26,16 @@ const Header = () => {
               <Button 
                 variant={location.pathname === '/' ? 'default' : 'ghost'}
               >
+                <Grid3X3 className="mr-2 h-4 w-4" />
                 Part Documentation
               </Button>
             </Link>
-            <Link to="/blender">
+            <Link to="/blade">
               <Button 
-                variant={location.pathname === '/blender' ? 'default' : 'ghost'}
+                variant={location.pathname === '/blade' ? 'default' : 'ghost'}
               >
-                Blender
+                <Sword className="mr-2 h-4 w-4" />
+                Blade
               </Button>
             </Link>
           </div>

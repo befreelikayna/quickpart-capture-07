@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { Sword, Hammer, Grid3X3 } from 'lucide-react';
 
 const Home = () => {
   return (
@@ -10,17 +11,20 @@ const Home = () => {
         <div className="grid gap-4 md:grid-cols-3">
           <Link to="/marber">
             <Button variant="outline" className="w-full">
+              <Hammer className="mr-2 h-4 w-4" />
               Marber
             </Button>
           </Link>
           <Link to="/">
             <Button variant="outline" className="w-full">
+              <Grid3X3 className="mr-2 h-4 w-4" />
               Part Documentation
             </Button>
           </Link>
-          <Link to="/blender">
+          <Link to="/blade">
             <Button variant="outline" className="w-full">
-              Blender
+              <Sword className="mr-2 h-4 w-4" />
+              Blade
             </Button>
           </Link>
         </div>

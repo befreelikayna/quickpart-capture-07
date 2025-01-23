@@ -65,7 +65,7 @@ const App = () => {
               } 
             />
             <Route path="/marber" element={<div>Marber Page (Coming Soon)</div>} />
-            <Route path="/blender" element={<div>Blender Page (Coming Soon)</div>} />
+            <Route path="/blade" element={<div>Blade Page (Coming Soon)</div>} />
             <Route path="*" element={<Navigate to="/home" replace />} />
           </Routes>
         </BrowserRouter>
