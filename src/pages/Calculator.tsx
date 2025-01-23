@@ -156,75 +156,82 @@ const Calculator = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="max-w-2xl mx-auto">
-        <div className="mb-6 flex justify-between items-center">
-          <h1 className="text-2xl font-bold">{t.title}</h1>
-          <div className="space-x-2">
+    <div className="container mx-auto px-4 py-4 sm:py-8">
+      <div className="max-w-lg mx-auto">
+        <div className="mb-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <h1 className="text-xl sm:text-2xl font-bold">{t.title}</h1>
+          <div className="flex gap-2">
             <Button 
               variant={currentLanguage === 'en' ? "default" : "outline"}
               onClick={() => setCurrentLanguage('en')}
+              className="px-3 py-1 text-sm"
             >
               EN
             </Button>
             <Button 
               variant={currentLanguage === 'ar' ? "default" : "outline"}
               onClick={() => setCurrentLanguage('ar')}
+              className="px-3 py-1 text-sm"
             >
               AR
             </Button>
             <Button 
               variant={currentLanguage === 'fr' ? "default" : "outline"}
               onClick={() => setCurrentLanguage('fr')}
+              className="px-3 py-1 text-sm"
             >
               FR
             </Button>
           </div>
         </div>
 
-        <Card className="p-6">
+        <Card className="p-4 sm:p-6">
           <div className="space-y-4">
             <div>
-              <Label htmlFor="length">{t.length}</Label>
+              <Label htmlFor="length" className="text-sm sm:text-base">{t.length}</Label>
               <Input
                 id="length"
                 type="number"
                 placeholder={t.enterLength}
                 value={length}
                 onChange={(e) => setLength(e.target.value)}
+                className="mt-1"
               />
             </div>
 
             <div>
-              <Label htmlFor="width">{t.width}</Label>
+              <Label htmlFor="width" className="text-sm sm:text-base">{t.width}</Label>
               <Input
                 id="width"
                 type="number"
                 placeholder={t.enterWidth}
                 value={width}
                 onChange={(e) => setWidth(e.target.value)}
+                className="mt-1"
               />
             </div>
 
             <div>
-              <Label htmlFor="tranches">{t.tranches}</Label>
+              <Label htmlFor="tranches" className="text-sm sm:text-base">{t.tranches}</Label>
               <Input
                 id="tranches"
                 type="number"
                 placeholder={t.enterTranches}
                 value={tranches}
                 onChange={(e) => setTranches(e.target.value)}
+                className="mt-1"
               />
             </div>
 
             <div>
-              <Label htmlFor="price">{t.price}</Label>
+              <Label htmlFor="price" className="text-sm sm:text-base">{t.price}</Label>
               <Input
                 id="price"
                 type="number"
                 placeholder={t.enterPrice}
                 value={pricePerMeter}
                 onChange={(e) => setPricePerMeter(e.target.value)}
+                className="mt-1"
               />
             </div>
 
@@ -234,7 +241,7 @@ const Calculator = () => {
           </div>
 
           {(results.totalArea > 0 || results.totalPrice > 0) && (
-            <div className="mt-6 space-y-2">
+            <div className="mt-6 space-y-2 text-sm sm:text-base">
               <p>{t.totalArea} {results.totalArea.toFixed(2)} {t.squareMeters}</p>
               <p>{t.perTranche} {results.areaPerTranche.toFixed(2)} {t.squareMeters}</p>
               <p>{t.totalPrice} {results.totalPrice.toFixed(2)} {t.currency}</p>
@@ -243,10 +250,10 @@ const Calculator = () => {
         </Card>
 
         <div className="mt-6">
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="text-xl font-semibold">{t.calculationHistory}</h2>
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4">
+            <h2 className="text-lg sm:text-xl font-semibold">{t.calculationHistory}</h2>
             {history.length > 0 && (
-              <Button variant="destructive" onClick={clearHistory}>
+              <Button variant="destructive" onClick={clearHistory} className="text-sm">
                 {t.clearHistory}
               </Button>
             )}
@@ -255,12 +262,14 @@ const Calculator = () => {
           <div className="space-y-4">
             {history.map((item, index) => (
               <Card key={index} className="p-4">
-                <div className="text-sm text-muted-foreground mb-2">
+                <div className="text-xs sm:text-sm text-muted-foreground mb-2">
                   {new Date(item.timestamp).toLocaleString()}
                 </div>
-                <p>{t.totalArea} {item.totalArea.toFixed(2)} {t.squareMeters}</p>
-                <p>{t.perTranche} {item.areaPerTranche.toFixed(2)} {t.squareMeters}</p>
-                <p>{t.totalPrice} {item.totalPrice.toFixed(2)} {t.currency}</p>
+                <div className="space-y-1 text-sm sm:text-base">
+                  <p>{t.totalArea} {item.totalArea.toFixed(2)} {t.squareMeters}</p>
+                  <p>{t.perTranche} {item.areaPerTranche.toFixed(2)} {t.squareMeters}</p>
+                  <p>{t.totalPrice} {item.totalPrice.toFixed(2)} {t.currency}</p>
+                </div>
               </Card>
             ))}
           </div>
