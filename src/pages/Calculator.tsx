@@ -296,40 +296,40 @@ const Calculator = () => {
             >
               {t.calculate}
             </Button>
+
+            {(results.totalArea > 0 || results.totalPrice > 0) && (
+              <div className="mt-6 space-y-3 rounded-lg bg-gradient-to-r from-purple-50 to-blue-50 p-6 shadow-lg animate-scale-in">
+                <div className="flex items-center justify-between p-3 rounded-md bg-white/80 backdrop-blur-sm hover:bg-white/90 transition-all duration-200 shadow-sm">
+                  <span className="font-medium text-purple-800">{t.totalArea}</span>
+                  <span className="px-4 py-2 bg-gradient-to-r from-purple-600 to-blue-500 text-white rounded-md">
+                    {results.totalArea.toFixed(2)} {t.squareMeters}
+                  </span>
+                </div>
+                
+                <div className="flex items-center justify-between p-3 rounded-md bg-white/80 backdrop-blur-sm hover:bg-white/90 transition-all duration-200 shadow-sm">
+                  <span className="font-medium text-purple-800">{t.perTranche}</span>
+                  <span className="px-4 py-2 bg-gradient-to-r from-purple-600 to-blue-500 text-white rounded-md">
+                    {results.areaPerTranche.toFixed(2)} {t.squareMeters}
+                  </span>
+                </div>
+                
+                <div className="flex items-center justify-between p-3 rounded-md bg-white/80 backdrop-blur-sm hover:bg-white/90 transition-all duration-200 shadow-sm">
+                  <span className="font-medium text-red-600">{t.totalPrice}</span>
+                  <span className="px-4 py-2 bg-gradient-to-r from-red-500 to-red-600 text-white rounded-md">
+                    {results.totalPrice.toFixed(2)} {t.currency}
+                  </span>
+                </div>
+
+                <Button
+                  onClick={downloadPDF}
+                  className="w-full mt-4 bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 transition-all duration-300 transform hover:scale-[1.02] animate-fade-in"
+                >
+                  <Download className="w-4 h-4 mr-2" />
+                  Download PDF
+                </Button>
+              </div>
+            )}
           </div>
-
-          {(results.totalArea > 0 || results.totalPrice > 0) && (
-            <div className="mt-6 space-y-3 rounded-lg bg-gradient-to-r from-purple-50 to-blue-50 p-6 shadow-lg animate-scale-in">
-              <div className="flex items-center justify-between p-3 rounded-md bg-white/80 backdrop-blur-sm hover:bg-white/90 transition-all duration-200 shadow-sm">
-                <span className="font-medium text-purple-800">{t.totalArea}</span>
-                <span className="px-4 py-2 bg-gradient-to-r from-purple-600 to-blue-500 text-white rounded-md">
-                  {results.totalArea.toFixed(2)} {t.squareMeters}
-                </span>
-              </div>
-              
-              <div className="flex items-center justify-between p-3 rounded-md bg-white/80 backdrop-blur-sm hover:bg-white/90 transition-all duration-200 shadow-sm">
-                <span className="font-medium text-purple-800">{t.perTranche}</span>
-                <span className="px-4 py-2 bg-gradient-to-r from-purple-600 to-blue-500 text-white rounded-md">
-                  {results.areaPerTranche.toFixed(2)} {t.squareMeters}
-                </span>
-              </div>
-              
-              <div className="flex items-center justify-between p-3 rounded-md bg-white/80 backdrop-blur-sm hover:bg-white/90 transition-all duration-200 shadow-sm">
-                <span className="font-medium text-red-600">{t.totalPrice}</span>
-                <span className="px-4 py-2 bg-gradient-to-r from-red-500 to-red-600 text-white rounded-md">
-                  {results.totalPrice.toFixed(2)} {t.currency}
-                </span>
-              </div>
-
-              <Button
-                onClick={downloadPDF}
-                className="w-full mt-4 bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 transition-all duration-300 transform hover:scale-[1.02] animate-fade-in"
-              >
-                <Download className="w-4 h-4 mr-2" />
-                Download PDF
-              </Button>
-            </div>
-          )}
         </Card>
 
         <div className="mt-6 animate-fade-in [animation-delay:600ms]">
