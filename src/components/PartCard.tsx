@@ -5,9 +5,23 @@ import { PartFormData } from './PartForm';
 interface PartCardProps {
   part: PartFormData;
   image: string;
+  language?: 'en' | 'de';
 }
 
-const PartCard = ({ part, image }: PartCardProps) => {
+const translations = {
+  en: {
+    dimensions: 'Dimensions',
+    notes: 'Notes'
+  },
+  de: {
+    dimensions: 'Abmessungen',
+    notes: 'Notizen'
+  }
+};
+
+const PartCard = ({ part, image, language = 'en' }: PartCardProps) => {
+  const t = translations[language];
+  
   return (
     <Card className="overflow-hidden">
       <div className="aspect-video w-full">
@@ -21,18 +35,14 @@ const PartCard = ({ part, image }: PartCardProps) => {
         <CardTitle>{part.name}</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="grid grid-cols-2 gap-2 text-sm">
+        <div className="grid gap-2 text-sm">
           <div>
-            <p className="text-muted-foreground">Dimensions</p>
+            <p className="text-muted-foreground">{t.dimensions}</p>
             <p>{part.length} × {part.width} × {part.height} mm</p>
           </div>
-          <div>
-            <p className="text-muted-foreground">Weight</p>
-            <p>{part.weight} g</p>
-          </div>
           {part.notes && (
-            <div className="col-span-2">
-              <p className="text-muted-foreground">Notes</p>
+            <div>
+              <p className="text-muted-foreground">{t.notes}</p>
               <p>{part.notes}</p>
             </div>
           )}
