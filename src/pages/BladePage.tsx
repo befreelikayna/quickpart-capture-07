@@ -59,7 +59,8 @@ const BladePage = ({ documentedParts, setDocumentedParts, language, setLanguage 
     if (currentImage) {
       setDocumentedParts(prev => [{
         data,
-        image: currentImage
+        image: currentImage,
+        type: 'blade'
       }, ...prev]);
       setCurrentImage(null);
     }
