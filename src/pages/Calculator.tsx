@@ -8,6 +8,7 @@ import jsPDF from 'jspdf';
 import { Download } from 'lucide-react';
 
 interface CalculationHistory {
+  name: string;
   length: number;
   width: number;
   tranches: number;
@@ -86,6 +87,7 @@ const translations = {
 
 const Calculator = () => {
   const [currentLanguage, setCurrentLanguage] = useState<'en' | 'ar' | 'fr'>('en');
+  const [name, setName] = useState('');
   const [length, setLength] = useState('');
   const [width, setWidth] = useState('');
   const [tranches, setTranches] = useState('');
@@ -133,6 +135,7 @@ const Calculator = () => {
     setResults(newResults);
 
     const newCalculation: CalculationHistory = {
+      name,
       length: lengthNum,
       width: widthNum,
       tranches: tranchesNum,
@@ -217,6 +220,20 @@ const Calculator = () => {
 
         <Card className="p-4 sm:p-6 bg-white/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300">
           <div className="space-y-4">
+            <div className="animate-fade-in [animation-delay:100ms]">
+              <Label htmlFor="name" className="text-sm sm:text-base font-medium text-gray-700">
+                Name:
+              </Label>
+              <Input
+                id="name"
+                type="text"
+                placeholder="Enter name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="mt-1 transition-all duration-200 hover:border-purple-400 focus:border-purple-500"
+              />
+            </div>
+
             <div className="animate-fade-in [animation-delay:100ms]">
               <Label htmlFor="length" className="text-sm sm:text-base font-medium text-gray-700">
                 {t.length}
@@ -313,6 +330,7 @@ const Calculator = () => {
               </Button>
             </div>
           )}
+          </div>
         </Card>
 
         <div className="mt-6 animate-fade-in [animation-delay:600ms]">
