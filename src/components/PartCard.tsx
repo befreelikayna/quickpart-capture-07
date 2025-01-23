@@ -45,7 +45,7 @@ const PartCard = ({ part, image, language = 'en' }: PartCardProps) => {
         <div className="grid gap-2 text-sm">
           <div>
             <p className="text-muted-foreground">{t.dimensions}</p>
-            <p>{part.length} × {part.width} × {part.height} cm</p>
+            <p>{part.length} cm × {part.width} cm × {part.height} cm</p>
           </div>
           <div>
             <p className="text-muted-foreground">{t.quantity}</p>
