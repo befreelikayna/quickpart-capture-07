@@ -37,6 +37,7 @@ const App = () => {
               element={
                 <Portfolio 
                   documentedParts={documentedParts}
+                  setDocumentedParts={setDocumentedParts}
                   language={language}
                 />
               } 
