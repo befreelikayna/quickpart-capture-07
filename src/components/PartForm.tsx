@@ -7,7 +7,7 @@ import { toast } from 'sonner';
 
 interface PartFormProps {
   onSubmit: (data: PartFormData) => void;
-  language?: 'en' | 'de';
+  language?: 'en' | 'de' | 'ro';
 }
 
 export interface PartFormData {
@@ -40,6 +40,17 @@ const translations = {
     enterPartName: 'Teilename eingeben',
     additionalDetails: 'Zusätzliche Details',
     success: 'Teil erfolgreich dokumentiert!'
+  },
+  ro: {
+    partName: 'Nume Piesă',
+    length: 'Lungime (mm)',
+    width: 'Lățime (mm)',
+    height: 'Înălțime (mm)',
+    notes: 'Note',
+    documentPart: 'Documentează Piesa',
+    enterPartName: 'Introduceți numele piesei',
+    additionalDetails: 'Detalii suplimentare',
+    success: 'Piesă documentată cu succes!'
   }
 };
 
