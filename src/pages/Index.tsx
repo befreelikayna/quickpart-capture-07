@@ -21,14 +21,26 @@ const translations = {
   en: {
     title: 'Portfolio',
     noParts: 'No parts documented yet',
+    bladeCategory: 'Blade Parts',
+    marberCategory: 'Marber Parts',
+    noBladeItems: 'No blade parts documented yet',
+    noMarberItems: 'No marber parts documented yet'
   },
   de: {
     title: 'Portfolio',
     noParts: 'Noch keine Teile dokumentiert',
+    bladeCategory: 'Klingen-Teile',
+    marberCategory: 'Marber-Teile',
+    noBladeItems: 'Noch keine Klingen-Teile dokumentiert',
+    noMarberItems: 'Noch keine Marber-Teile dokumentiert'
   },
   ro: {
     title: 'Portofoliu',
     noParts: 'Nicio piesă documentată încă',
+    bladeCategory: 'Piese Lamă',
+    marberCategory: 'Piese Marber',
+    noBladeItems: 'Nicio piesă lamă documentată încă',
+    noMarberItems: 'Nicio piesă marber documentată încă'
   }
 };
 
@@ -40,6 +52,10 @@ const languageNames = {
 
 const Index = ({ documentedParts, language, setLanguage }: IndexProps) => {
   const t = translations[language];
+
+  // Separate parts by category
+  const bladeParts = documentedParts.filter(part => part.type === 'blade');
+  const marberParts = documentedParts.filter(part => part.type === 'marber');
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-7xl">
@@ -72,15 +88,44 @@ const Index = ({ documentedParts, language, setLanguage }: IndexProps) => {
       {documentedParts.length === 0 ? (
         <p className="text-center text-muted-foreground">{t.noParts}</p>
       ) : (
-        <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {documentedParts.map((part, index) => (
-            <PartCard
-              key={index}
-              part={part.data}
-              image={part.image}
-              language={language}
-            />
-          ))}
+        <div className="space-y-12">
+          {/* Blade Category */}
+          <section>
+            <h2 className="text-2xl font-semibold mb-6">{t.bladeCategory}</h2>
+            {bladeParts.length === 0 ? (
+              <p className="text-center text-muted-foreground">{t.noBladeItems}</p>
+            ) : (
+              <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                {bladeParts.map((part, index) => (
+                  <PartCard
+                    key={index}
+                    part={part.data}
+                    image={part.image}
+                    language={language}
+                  />
+                ))}
+              </div>
+            )}
+          </section>
+
+          {/* Marber Category */}
+          <section>
+            <h2 className="text-2xl font-semibold mb-6">{t.marberCategory}</h2>
+            {marberParts.length === 0 ? (
+              <p className="text-center text-muted-foreground">{t.noMarberItems}</p>
+            ) : (
+              <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                {marberParts.map((part, index) => (
+                  <PartCard
+                    key={index}
+                    part={part.data}
+                    image={part.image}
+                    language={language}
+                  />
+                ))}
+              </div>
+            )}
+          </section>
         </div>
       )}
     </div>
