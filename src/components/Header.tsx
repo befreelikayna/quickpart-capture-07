@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Sword, Hammer, Grid3X3 } from 'lucide-react';
+import { Sword, Hammer, Grid3X3, Calculator } from 'lucide-react';
 
 const Header = () => {
   const location = useLocation();
@@ -36,6 +36,14 @@ const Header = () => {
               >
                 <Grid3X3 className="mr-2 h-4 w-4" />
                 Part Documentation
+              </Button>
+            </Link>
+            <Link to="/calculator">
+              <Button 
+                variant={location.pathname === '/calculator' ? 'default' : 'ghost'}
+              >
+                <Calculator className="mr-2 h-4 w-4" />
+                Calculator
               </Button>
             </Link>
           </div>

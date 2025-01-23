@@ -10,6 +10,7 @@ import Index from "./pages/Index";
 import Portfolio from "./pages/Portfolio";
 import MarberPage from "./pages/MarberPage";
 import BladePage from "./pages/BladePage";
+import Calculator from "./pages/Calculator";
 import { DocumentedPart } from "./types/parts";
 import { loadDocumentedParts, saveDocumentedParts, loadLanguage, saveLanguage } from "./utils/dataStorage";
 
@@ -45,6 +46,7 @@ const App = () => {
           <Header />
           <Routes>
             <Route path="/home" element={<Home />} />
+            <Route path="/calculator" element={<Calculator />} />
             <Route 
               path="/" 
               element={
