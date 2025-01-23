@@ -10,6 +10,8 @@ import Index from "./pages/Index";
 import Portfolio from "./pages/Portfolio";
 import MarberPage from "./pages/MarberPage";
 import BladePage from "./pages/BladePage";
+import MarberPortfolio from "./pages/MarberPortfolio";
+import BladePortfolio from "./pages/BladePortfolio";
 import Calculator from "./pages/Calculator";
 import { DocumentedPart } from "./types/parts";
 import { 
@@ -28,7 +30,6 @@ const App = () => {
   const [bladeParts, setBladeParts] = useState<DocumentedPart[]>([]);
   const [language, setLanguage] = useState<'en' | 'de' | 'ro'>('en');
 
-  // Load saved data on initial render
   useEffect(() => {
     const savedMarberParts = loadMarberParts();
     const savedBladeParts = loadBladeParts();
@@ -38,7 +39,6 @@ const App = () => {
     setLanguage(savedLanguage);
   }, []);
 
-  // Save data whenever it changes
   useEffect(() => {
     saveMarberParts(marberParts);
   }, [marberParts]);
@@ -61,49 +61,12 @@ const App = () => {
           <Routes>
             <Route path="/home" element={<Home />} />
             <Route path="/calculator" element={<Calculator />} />
-            <Route 
-              path="/" 
-              element={
-                <Index 
-                  documentedParts={[...marberParts, ...bladeParts]} 
-                  setDocumentedParts={() => {}} // Disabled as we now handle parts separately
-                  language={language}
-                  setLanguage={setLanguage}
-                />
-              } 
-            />
-            <Route 
-              path="/portfolio" 
-              element={
-                <Portfolio 
-                  documentedParts={[...marberParts, ...bladeParts]}
-                  setDocumentedParts={() => {}} // Disabled as we now handle parts separately
-                  language={language}
-                />
-              } 
-            />
-            <Route 
-              path="/marber" 
-              element={
-                <MarberPage 
-                  documentedParts={marberParts}
-                  setDocumentedParts={setMarberParts}
-                  language={language}
-                  setLanguage={setLanguage}
-                />
-              } 
-            />
-            <Route 
-              path="/blade" 
-              element={
-                <BladePage 
-                  documentedParts={bladeParts}
-                  setDocumentedParts={setBladeParts}
-                  language={language}
-                  setLanguage={setLanguage}
-                />
-              } 
-            />
+            <Route path="/" element={<Index documentedParts={[...marberParts, ...bladeParts]} setDocumentedParts={() => {}} language={language} setLanguage={setLanguage} />} />
+            <Route path="/portfolio" element={<Portfolio documentedParts={[...marberParts, ...bladeParts]} setDocumentedParts={() => {}} language={language} />} />
+            <Route path="/marber" element={<MarberPage documentedParts={marberParts} setDocumentedParts={setMarberParts} language={language} setLanguage={setLanguage} />} />
+            <Route path="/marber-portfolio" element={<MarberPortfolio documentedParts={marberParts} setDocumentedParts={setMarberParts} language={language} />} />
+            <Route path="/blade" element={<BladePage documentedParts={bladeParts} setDocumentedParts={setBladeParts} language={language} setLanguage={setLanguage} />} />
+            <Route path="/blade-portfolio" element={<BladePortfolio documentedParts={bladeParts} setDocumentedParts={setBladeParts} language={language} />} />
             <Route path="*" element={<Navigate to="/home" replace />} />
           </Routes>
         </BrowserRouter>
