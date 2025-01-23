@@ -330,7 +330,6 @@ const Calculator = () => {
               </Button>
             </div>
           )}
-          </div>
         </Card>
 
         <div className="mt-6 animate-fade-in [animation-delay:600ms]">
