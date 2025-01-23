@@ -5,25 +5,11 @@ import {
   Sword, 
   Hammer, 
   Grid3X3, 
-  Calculator, 
-  Languages 
+  Calculator
 } from 'lucide-react';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 
 const Header = () => {
   const location = useLocation();
-  
-  const handleLanguageChange = (lang: 'en' | 'ar' | 'fr') => {
-    document.documentElement.lang = lang;
-    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-    localStorage.setItem('selectedLanguage', lang);
-    window.location.reload();
-  };
   
   return (
     <header className="border-b">
@@ -65,24 +51,6 @@ const Header = () => {
                 Calculator
               </Button>
             </Link>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="icon">
-                  <Languages className="h-4 w-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem onClick={() => handleLanguageChange('en')}>
-                  English
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => handleLanguageChange('ar')}>
-                  العربية
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => handleLanguageChange('fr')}>
-                  Français
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
           </div>
         </nav>
       </div>
