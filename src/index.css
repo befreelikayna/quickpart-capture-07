@@ -40,10 +40,21 @@
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
   }
   
   #root {
     background: rgba(255, 255, 255, 0.5);
     min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media (max-width: 768px) {
+    body {
+      background-attachment: scroll;
+    }
   }
 }

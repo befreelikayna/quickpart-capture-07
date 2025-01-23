@@ -5,8 +5,14 @@ import {
   Disc, 
   Hammer, 
   Grid3X3, 
-  Calculator
+  Calculator,
+  Menu
 } from 'lucide-react';
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 const translations = {
   en: {
@@ -31,9 +37,49 @@ const translations = {
 
 const Header = () => {
   const location = useLocation();
-  // Default to English if language is not set in localStorage
   const currentLanguage = (localStorage.getItem('language') || 'en') as 'en' | 'ar' | 'fr';
   const t = translations[currentLanguage];
+  
+  const NavItems = () => (
+    <>
+      <Link to="/blade">
+        <Button 
+          variant={location.pathname === '/blade' ? 'default' : 'ghost'}
+          className="w-full justify-start md:w-auto"
+        >
+          <Disc className="mr-2 h-4 w-4" />
+          {t.blade}
+        </Button>
+      </Link>
+      <Link to="/marber">
+        <Button 
+          variant={location.pathname === '/marber' ? 'default' : 'ghost'}
+          className="w-full justify-start md:w-auto"
+        >
+          <Hammer className="mr-2 h-4 w-4" />
+          {t.marber}
+        </Button>
+      </Link>
+      <Link to="/">
+        <Button 
+          variant={location.pathname === '/' ? 'default' : 'ghost'}
+          className="w-full justify-start md:w-auto"
+        >
+          <Grid3X3 className="mr-2 h-4 w-4" />
+          {t.portfolio}
+        </Button>
+      </Link>
+      <Link to="/calculator">
+        <Button 
+          variant={location.pathname === '/calculator' ? 'default' : 'ghost'}
+          className="w-full justify-start md:w-auto"
+        >
+          <Calculator className="mr-2 h-4 w-4" />
+          {t.calculator}
+        </Button>
+      </Link>
+    </>
+  );
   
   return (
     <header className="border-b">
@@ -46,39 +92,26 @@ const Header = () => {
               className="h-8 w-auto hover:opacity-80 transition-opacity"
             />
           </Link>
-          <div className="flex gap-4">
-            <Link to="/blade">
-              <Button 
-                variant={location.pathname === '/blade' ? 'default' : 'ghost'}
-              >
-                <Disc className="mr-2 h-4 w-4" />
-                {t.blade}
-              </Button>
-            </Link>
-            <Link to="/marber">
-              <Button 
-                variant={location.pathname === '/marber' ? 'default' : 'ghost'}
-              >
-                <Hammer className="mr-2 h-4 w-4" />
-                {t.marber}
-              </Button>
-            </Link>
-            <Link to="/">
-              <Button 
-                variant={location.pathname === '/' ? 'default' : 'ghost'}
-              >
-                <Grid3X3 className="mr-2 h-4 w-4" />
-                {t.portfolio}
-              </Button>
-            </Link>
-            <Link to="/calculator">
-              <Button 
-                variant={location.pathname === '/calculator' ? 'default' : 'ghost'}
-              >
-                <Calculator className="mr-2 h-4 w-4" />
-                {t.calculator}
-              </Button>
-            </Link>
+          
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex gap-4">
+            <NavItems />
+          </div>
+
+          {/* Mobile Navigation */}
+          <div className="md:hidden">
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon">
+                  <Menu className="h-6 w-6" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent>
+                <div className="flex flex-col gap-4 mt-8">
+                  <NavItems />
+                </div>
+              </SheetContent>
+            </Sheet>
           </div>
         </nav>
       </div>
