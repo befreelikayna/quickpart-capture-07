@@ -161,22 +161,66 @@ const Calculator = () => {
     try {
       const doc = new jsPDF();
       
+      // Title
       doc.setFontSize(20);
       doc.text(t.title, 20, 20);
       
-      doc.setFontSize(12);
-      doc.text(`${t.length} ${length}`, 20, 40);
-      doc.text(`${t.width} ${width}`, 20, 50);
-      doc.text(`${t.tranches} ${tranches}`, 20, 60);
-      doc.text(`${t.price} ${pricePerMeter}`, 20, 70);
-      
-      doc.setFontSize(14);
-      doc.text(`${t.totalArea} ${results.totalArea.toFixed(2)} ${t.squareMeters}`, 20, 90);
-      doc.text(`${t.perTranche} ${results.areaPerTranche.toFixed(2)} ${t.squareMeters}`, 20, 100);
-      doc.text(`${t.totalPrice} ${results.totalPrice.toFixed(2)} ${t.currency}`, 20, 110);
-      
+      // Add current date
       doc.setFontSize(10);
-      doc.text(new Date().toLocaleString(), 20, 130);
+      doc.text(new Date().toLocaleString(), 20, 30);
+
+      // Table headers
+      doc.setFontSize(12);
+      const headers = ['Field', 'Value', 'Unit'];
+      let startY = 50;
+      
+      // Style for table
+      doc.setDrawColor(128, 128, 128);
+      doc.setFillColor(240, 240, 240);
+      doc.setTextColor(0, 0, 0);
+      
+      // Draw table header
+      doc.rect(20, startY - 10, 170, 10, 'F');
+      doc.setFont(undefined, 'bold');
+      doc.text(headers[0], 25, startY - 3);
+      doc.text(headers[1], 95, startY - 3);
+      doc.text(headers[2], 165, startY - 3);
+      
+      // Table data
+      doc.setFont(undefined, 'normal');
+      const data = [
+        ['Name', name, ''],
+        [t.length, length, 'm'],
+        [t.width, width, 'm'],
+        [t.tranches, tranches, ''],
+        [t.price, pricePerMeter, t.currency + '/m²'],
+        [t.totalArea, results.totalArea.toFixed(2), t.squareMeters],
+        [t.perTranche, results.areaPerTranche.toFixed(2), t.squareMeters],
+        [t.totalPrice, results.totalPrice.toFixed(2), t.currency],
+      ];
+      
+      // Draw table rows
+      data.forEach((row, index) => {
+        const y = startY + (index * 10);
+        
+        // Alternate row background
+        if (index % 2 === 0) {
+          doc.setFillColor(250, 250, 250);
+        } else {
+          doc.setFillColor(255, 255, 255);
+        }
+        doc.rect(20, y, 170, 10, 'F');
+        
+        // Draw cell borders
+        doc.rect(20, y, 170, 10);
+        doc.line(90, y, 90, y + 10); // Vertical line after first column
+        doc.line(160, y, 160, y + 10); // Vertical line after second column
+        
+        // Add text
+        doc.text(row[0], 25, y + 7);
+        doc.text(row[1].toString(), 95, y + 7);
+        doc.text(row[2], 165, y + 7);
+      });
       
       doc.save('marble-calculation.pdf');
       toast.success('PDF downloaded successfully');
