@@ -1,10 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import PhotoUpload from '@/components/PhotoUpload';
-import PartForm, { PartFormData } from '@/components/PartForm';
+import { Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import PartCard from '@/components/PartCard';
 import { DocumentedPart } from '@/types/parts';
-import { Globe, Grid } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -21,19 +19,16 @@ interface IndexProps {
 
 const translations = {
   en: {
-    title: 'Part Documentation',
-    viewPortfolio: 'View Portfolio',
-    newPart: 'Document New Part'
+    title: 'Portfolio',
+    noParts: 'No parts documented yet',
   },
   de: {
-    title: 'Teile-Dokumentation',
-    viewPortfolio: 'Portfolio ansehen',
-    newPart: 'Neues Teil dokumentieren'
+    title: 'Portfolio',
+    noParts: 'Noch keine Teile dokumentiert',
   },
   ro: {
-    title: 'Documentație Piese',
-    viewPortfolio: 'Vezi Portofoliul',
-    newPart: 'Documentează Piesă Nouă'
+    title: 'Portofoliu',
+    noParts: 'Nicio piesă documentată încă',
   }
 };
 
@@ -43,70 +38,51 @@ const languageNames = {
   ro: 'Română'
 };
 
-const Index = ({ documentedParts, setDocumentedParts, language, setLanguage }: IndexProps) => {
-  const [currentImage, setCurrentImage] = React.useState<string | null>(null);
+const Index = ({ documentedParts, language, setLanguage }: IndexProps) => {
   const t = translations[language];
 
-  const handlePhotoSelect = (file: File) => {
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setCurrentImage(reader.result as string);
-    };
-    reader.readAsDataURL(file);
-  };
-
-  const handlePartSubmit = (data: PartFormData) => {
-    if (currentImage) {
-      setDocumentedParts(prev => [{
-        data,
-        image: currentImage
-      }, ...prev]);
-      setCurrentImage(null);
-    }
-  };
-
   return (
-    <div className="container mx-auto px-4 py-8 max-w-2xl">
-      <div className="flex justify-end mb-8">
-        <div className="flex gap-2">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button
-                variant="outline"
-                className="flex items-center gap-2"
-              >
-                <Globe className="h-4 w-4 md:h-5 md:w-5" />
-                <span className="hidden md:inline">{languageNames[language]}</span>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem onClick={() => setLanguage('en')}>
-                English
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setLanguage('de')}>
-                Deutsch
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setLanguage('ro')}>
-                Română
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-          <Link to="/portfolio">
-            <Button variant="outline" className="flex items-center gap-2">
-              <Grid className="h-4 w-4 md:h-5 md:w-5" />
-              <span className="hidden md:inline">{t.viewPortfolio}</span>
+    <div className="container mx-auto px-4 py-8 max-w-7xl">
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-3xl font-bold">{t.title}</h1>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button
+              variant="outline"
+              className="flex items-center gap-2"
+            >
+              <Globe className="h-4 w-4 md:h-5 md:w-5" />
+              <span className="hidden md:inline">{languageNames[language]}</span>
             </Button>
-          </Link>
-        </div>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuItem onClick={() => setLanguage('en')}>
+              English
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => setLanguage('de')}>
+              Deutsch
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => setLanguage('ro')}>
+              Română
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
-      
-      <div className="space-y-8">
-        <div className="bg-card rounded-xl p-6 shadow-sm">
-          <h2 className="text-xl font-semibold mb-4">{t.newPart}</h2>
-          <PhotoUpload onPhotoSelect={handlePhotoSelect} />
-          <PartForm onSubmit={handlePartSubmit} language={language} />
+
+      {documentedParts.length === 0 ? (
+        <p className="text-center text-muted-foreground">{t.noParts}</p>
+      ) : (
+        <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {documentedParts.map((part, index) => (
+            <PartCard
+              key={index}
+              part={part.data}
+              image={part.image}
+              language={language}
+            />
+          ))}
         </div>
-      </div>
+      )}
     </div>
   );
 };

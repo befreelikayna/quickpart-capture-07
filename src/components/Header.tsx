@@ -46,7 +46,7 @@ const Header = () => {
                 variant={location.pathname === '/' ? 'default' : 'ghost'}
               >
                 <Grid3X3 className="mr-2 h-4 w-4" />
-                Part Documentation
+                Portfolio
               </Button>
             </Link>
             <Link to="/marber">
