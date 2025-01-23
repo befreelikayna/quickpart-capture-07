@@ -5,6 +5,12 @@ import PartForm, { PartFormData } from '@/components/PartForm';
 import { Button } from '@/components/ui/button';
 import { DocumentedPart } from '@/types/parts';
 import { Globe, Grid } from 'lucide-react';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 interface IndexProps {
   documentedParts: DocumentedPart[];
@@ -31,6 +37,12 @@ const translations = {
   }
 };
 
+const languageNames = {
+  en: 'English',
+  de: 'Deutsch',
+  ro: 'Română'
+};
+
 const Index = ({ documentedParts, setDocumentedParts, language, setLanguage }: IndexProps) => {
   const [currentImage, setCurrentImage] = React.useState<string | null>(null);
   const t = translations[language];
@@ -53,43 +65,33 @@ const Index = ({ documentedParts, setDocumentedParts, language, setLanguage }: I
     }
   };
 
-  const handleLanguageChange = () => {
-    setLanguage(prev => {
-      switch (prev) {
-        case 'en':
-          return 'de';
-        case 'de':
-          return 'ro';
-        case 'ro':
-          return 'en';
-      }
-    });
-  };
-
-  const getLanguageButton = () => {
-    switch (language) {
-      case 'en':
-        return 'DE';
-      case 'de':
-        return 'RO';
-      case 'ro':
-        return 'EN';
-    }
-  };
-
   return (
     <div className="container mx-auto px-4 py-8 max-w-2xl">
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-3xl font-bold">{t.title}</h1>
         <div className="flex gap-2">
-          <Button
-            variant="outline"
-            onClick={handleLanguageChange}
-            className="flex items-center gap-2"
-          >
-            <Globe className="h-4 w-4 md:h-5 md:w-5" />
-            <span className="hidden md:inline">{getLanguageButton()}</span>
-          </Button>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="outline"
+                className="flex items-center gap-2"
+              >
+                <Globe className="h-4 w-4 md:h-5 md:w-5" />
+                <span className="hidden md:inline">{languageNames[language]}</span>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem onClick={() => setLanguage('en')}>
+                English
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setLanguage('de')}>
+                Deutsch
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setLanguage('ro')}>
+                Română
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
           <Link to="/portfolio">
             <Button variant="outline" className="flex items-center gap-2">
               <Grid className="h-4 w-4 md:h-5 md:w-5" />
