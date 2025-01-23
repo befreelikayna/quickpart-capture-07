@@ -67,8 +67,7 @@ const Index = ({ documentedParts, setDocumentedParts, language, setLanguage }: I
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-2xl">
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold">{t.title}</h1>
+      <div className="flex justify-end mb-8">
         <div className="flex gap-2">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>

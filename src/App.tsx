@@ -3,7 +3,9 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Header from "./components/Header";
+import Home from "./pages/Home";
 import Index from "./pages/Index";
 import Portfolio from "./pages/Portfolio";
 import { DocumentedPart } from "./types/parts";
@@ -38,7 +40,9 @@ const App = () => {
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <Header />
           <Routes>
+            <Route path="/home" element={<Home />} />
             <Route 
               path="/" 
               element={
@@ -60,6 +64,9 @@ const App = () => {
                 />
               } 
             />
+            <Route path="/marber" element={<div>Marber Page (Coming Soon)</div>} />
+            <Route path="/blender" element={<div>Blender Page (Coming Soon)</div>} />
+            <Route path="*" element={<Navigate to="/home" replace />} />
           </Routes>
         </BrowserRouter>
       </TooltipProvider>
