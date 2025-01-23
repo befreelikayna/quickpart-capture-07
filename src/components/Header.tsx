@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { 
   Disc, 
@@ -37,8 +37,32 @@ const translations = {
 
 const Header = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const currentLanguage = (localStorage.getItem('language') || 'en') as 'en' | 'ar' | 'fr';
   const t = translations[currentLanguage];
+
+  useEffect(() => {
+    const checkAuth = () => {
+      const auth = sessionStorage.getItem('isAuthenticated') === 'true';
+      setIsAuthenticated(auth);
+      
+      if (!auth && location.pathname !== '/home') {
+        navigate('/home');
+      }
+    };
+
+    checkAuth();
+    window.addEventListener('storage', checkAuth);
+    
+    return () => {
+      window.removeEventListener('storage', checkAuth);
+    };
+  }, [location.pathname, navigate]);
+  
+  if (!isAuthenticated && location.pathname !== '/home') {
+    return null;
+  }
   
   const NavItems = () => (
     <>
