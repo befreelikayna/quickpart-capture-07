@@ -156,104 +156,121 @@ const Calculator = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-4 sm:py-8">
+    <div className="container mx-auto px-4 py-4 sm:py-8 animate-fade-in">
       <div className="max-w-lg mx-auto">
         <div className="mb-6 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <h1 className="text-xl sm:text-2xl font-bold">{t.title}</h1>
-          <div className="flex gap-2">
+          <h1 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-purple-600 to-blue-500 bg-clip-text text-transparent animate-scale-in">
+            {t.title}
+          </h1>
+          <div className="flex gap-2 animate-fade-in">
             <Button 
               variant={currentLanguage === 'en' ? "default" : "outline"}
               onClick={() => setCurrentLanguage('en')}
-              className="px-3 py-1 text-sm"
+              className="px-3 py-1 text-sm hover:scale-105 transition-transform duration-200"
             >
               EN
             </Button>
             <Button 
               variant={currentLanguage === 'ar' ? "default" : "outline"}
               onClick={() => setCurrentLanguage('ar')}
-              className="px-3 py-1 text-sm"
+              className="px-3 py-1 text-sm hover:scale-105 transition-transform duration-200"
             >
               AR
             </Button>
             <Button 
               variant={currentLanguage === 'fr' ? "default" : "outline"}
               onClick={() => setCurrentLanguage('fr')}
-              className="px-3 py-1 text-sm"
+              className="px-3 py-1 text-sm hover:scale-105 transition-transform duration-200"
             >
               FR
             </Button>
           </div>
         </div>
 
-        <Card className="p-4 sm:p-6">
+        <Card className="p-4 sm:p-6 bg-white/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300">
           <div className="space-y-4">
-            <div>
-              <Label htmlFor="length" className="text-sm sm:text-base">{t.length}</Label>
+            <div className="animate-fade-in [animation-delay:100ms]">
+              <Label htmlFor="length" className="text-sm sm:text-base font-medium text-gray-700">
+                {t.length}
+              </Label>
               <Input
                 id="length"
                 type="number"
                 placeholder={t.enterLength}
                 value={length}
                 onChange={(e) => setLength(e.target.value)}
-                className="mt-1"
+                className="mt-1 transition-all duration-200 hover:border-purple-400 focus:border-purple-500"
               />
             </div>
 
-            <div>
-              <Label htmlFor="width" className="text-sm sm:text-base">{t.width}</Label>
+            <div className="animate-fade-in [animation-delay:200ms]">
+              <Label htmlFor="width" className="text-sm sm:text-base font-medium text-gray-700">
+                {t.width}
+              </Label>
               <Input
                 id="width"
                 type="number"
                 placeholder={t.enterWidth}
                 value={width}
                 onChange={(e) => setWidth(e.target.value)}
-                className="mt-1"
+                className="mt-1 transition-all duration-200 hover:border-purple-400 focus:border-purple-500"
               />
             </div>
 
-            <div>
-              <Label htmlFor="tranches" className="text-sm sm:text-base">{t.tranches}</Label>
+            <div className="animate-fade-in [animation-delay:300ms]">
+              <Label htmlFor="tranches" className="text-sm sm:text-base font-medium text-gray-700">
+                {t.tranches}
+              </Label>
               <Input
                 id="tranches"
                 type="number"
                 placeholder={t.enterTranches}
                 value={tranches}
                 onChange={(e) => setTranches(e.target.value)}
-                className="mt-1"
+                className="mt-1 transition-all duration-200 hover:border-purple-400 focus:border-purple-500"
               />
             </div>
 
-            <div>
-              <Label htmlFor="price" className="text-sm sm:text-base">{t.price}</Label>
+            <div className="animate-fade-in [animation-delay:400ms]">
+              <Label htmlFor="price" className="text-sm sm:text-base font-medium text-gray-700">
+                {t.price}
+              </Label>
               <Input
                 id="price"
                 type="number"
                 placeholder={t.enterPrice}
                 value={pricePerMeter}
                 onChange={(e) => setPricePerMeter(e.target.value)}
-                className="mt-1"
+                className="mt-1 transition-all duration-200 hover:border-purple-400 focus:border-purple-500"
               />
             </div>
 
-            <Button onClick={calculate} className="w-full">
+            <Button 
+              onClick={calculate} 
+              className="w-full bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 transition-all duration-300 transform hover:scale-[1.02] animate-fade-in [animation-delay:500ms]"
+            >
               {t.calculate}
             </Button>
           </div>
 
           {(results.totalArea > 0 || results.totalPrice > 0) && (
-            <div className="mt-6 space-y-2 text-sm sm:text-base">
-              <p>{t.totalArea} {results.totalArea.toFixed(2)} {t.squareMeters}</p>
-              <p>{t.perTranche} {results.areaPerTranche.toFixed(2)} {t.squareMeters}</p>
-              <p>{t.totalPrice} {results.totalPrice.toFixed(2)} {t.currency}</p>
+            <div className="mt-6 space-y-2 text-sm sm:text-base bg-purple-50 p-4 rounded-lg animate-scale-in">
+              <p className="text-purple-800">{t.totalArea} {results.totalArea.toFixed(2)} {t.squareMeters}</p>
+              <p className="text-purple-800">{t.perTranche} {results.areaPerTranche.toFixed(2)} {t.squareMeters}</p>
+              <p className="text-purple-800">{t.totalPrice} {results.totalPrice.toFixed(2)} {t.currency}</p>
             </div>
           )}
         </Card>
 
-        <div className="mt-6">
+        <div className="mt-6 animate-fade-in [animation-delay:600ms]">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4">
-            <h2 className="text-lg sm:text-xl font-semibold">{t.calculationHistory}</h2>
+            <h2 className="text-lg sm:text-xl font-semibold text-gray-800">{t.calculationHistory}</h2>
             {history.length > 0 && (
-              <Button variant="destructive" onClick={clearHistory} className="text-sm">
+              <Button 
+                variant="destructive" 
+                onClick={clearHistory} 
+                className="text-sm hover:scale-105 transition-transform duration-200"
+              >
                 {t.clearHistory}
               </Button>
             )}
@@ -261,11 +278,15 @@ const Calculator = () => {
 
           <div className="space-y-4">
             {history.map((item, index) => (
-              <Card key={index} className="p-4">
-                <div className="text-xs sm:text-sm text-muted-foreground mb-2">
+              <Card 
+                key={index} 
+                className="p-4 bg-white/80 backdrop-blur-sm shadow hover:shadow-md transition-all duration-300 animate-fade-in"
+                style={{ animationDelay: `${(index + 1) * 100}ms` }}
+              >
+                <div className="text-xs sm:text-sm text-gray-500 mb-2">
                   {new Date(item.timestamp).toLocaleString()}
                 </div>
-                <div className="space-y-1 text-sm sm:text-base">
+                <div className="space-y-1 text-sm sm:text-base text-gray-700">
                   <p>{t.totalArea} {item.totalArea.toFixed(2)} {t.squareMeters}</p>
                   <p>{t.perTranche} {item.areaPerTranche.toFixed(2)} {t.squareMeters}</p>
                   <p>{t.totalPrice} {item.totalPrice.toFixed(2)} {t.currency}</p>
