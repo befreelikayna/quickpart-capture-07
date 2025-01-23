@@ -4,6 +4,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { toast } from 'sonner';
 import { Card } from '@/components/ui/card';
+import jsPDF from 'jspdf';
+import { Download } from 'lucide-react';
 
 interface CalculationHistory {
   length: number;
@@ -99,13 +101,11 @@ const Calculator = () => {
   const t = translations[currentLanguage];
 
   useEffect(() => {
-    // Load history from localStorage
     const savedHistory = localStorage.getItem('calculationHistory');
     if (savedHistory) {
       setHistory(JSON.parse(savedHistory));
     }
 
-    // Set document direction based on language
     document.documentElement.dir = currentLanguage === 'ar' ? 'rtl' : 'ltr';
   }, [currentLanguage]);
 
@@ -132,7 +132,6 @@ const Calculator = () => {
 
     setResults(newResults);
 
-    // Save to history
     const newCalculation: CalculationHistory = {
       length: lengthNum,
       width: widthNum,
@@ -153,6 +152,35 @@ const Calculator = () => {
     setHistory([]);
     localStorage.removeItem('calculationHistory');
     toast.success("History cleared successfully");
+  };
+
+  const downloadPDF = () => {
+    try {
+      const doc = new jsPDF();
+      
+      doc.setFontSize(20);
+      doc.text(t.title, 20, 20);
+      
+      doc.setFontSize(12);
+      doc.text(`${t.length} ${length}`, 20, 40);
+      doc.text(`${t.width} ${width}`, 20, 50);
+      doc.text(`${t.tranches} ${tranches}`, 20, 60);
+      doc.text(`${t.price} ${pricePerMeter}`, 20, 70);
+      
+      doc.setFontSize(14);
+      doc.text(`${t.totalArea} ${results.totalArea.toFixed(2)} ${t.squareMeters}`, 20, 90);
+      doc.text(`${t.perTranche} ${results.areaPerTranche.toFixed(2)} ${t.squareMeters}`, 20, 100);
+      doc.text(`${t.totalPrice} ${results.totalPrice.toFixed(2)} ${t.currency}`, 20, 110);
+      
+      doc.setFontSize(10);
+      doc.text(new Date().toLocaleString(), 20, 130);
+      
+      doc.save('marble-calculation.pdf');
+      toast.success('PDF downloaded successfully');
+    } catch (error) {
+      toast.error('Error generating PDF');
+      console.error('PDF generation error:', error);
+    }
   };
 
   return (
@@ -275,6 +303,14 @@ const Calculator = () => {
                   {results.totalPrice.toFixed(2)} {t.currency}
                 </span>
               </div>
+
+              <Button
+                onClick={downloadPDF}
+                className="w-full mt-4 bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 transition-all duration-300 transform hover:scale-[1.02] animate-fade-in"
+              >
+                <Download className="w-4 h-4 mr-2" />
+                Download PDF
+              </Button>
             </div>
           )}
         </Card>
