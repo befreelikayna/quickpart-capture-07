@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { toast } from 'sonner';
 
 const Home = () => {
@@ -10,14 +10,9 @@ const Home = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Check if already authenticated
-    const isAuthenticated = sessionStorage.getItem('isAuthenticated');
-    if (isAuthenticated === 'true') {
-      console.log('User is already authenticated');
-    }
-
-    // Set loading timer
+    console.log('Loading timer started');
     const timer = setTimeout(() => {
+      console.log('Loading complete');
       setLoading(false);
     }, 3000);
 
@@ -26,21 +21,23 @@ const Home = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    console.log('Password submitted:', password);
     
     if (password === 'nadinadi') {
+      console.log('Password correct, authenticating...');
       sessionStorage.setItem('isAuthenticated', 'true');
-      toast.success('Access granted!');
+      toast.success('Successfully authenticated!');
       navigate('/');
     } else {
+      console.log('Incorrect password');
       toast.error('Incorrect password');
-      setPassword('');
     }
   };
 
   if (loading) {
     return (
       <div className="fixed inset-0 flex items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100">
-        <div className="text-center">
+        <div className="text-center group relative">
           <img 
             src="/lovable-uploads/0a32041a-b5ba-43b3-808b-11f1f9068ecc.png" 
             alt="Logo" 
@@ -49,37 +46,32 @@ const Home = () => {
           <div className="mt-4 animate-pulse text-2xl font-semibold text-blue-600">
             Loading...
           </div>
+          <span className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-blue-400 text-sm">
+            Edit with Lovable
+          </span>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="container mx-auto px-4 py-8 min-h-[calc(100vh-4rem)] flex items-center justify-center">
-      <div className="w-full max-w-md">
-        <div className="text-center mb-8">
-          <img 
-            src="/lovable-uploads/0a32041a-b5ba-43b3-808b-11f1f9068ecc.png" 
-            alt="Logo" 
-            className="mx-auto h-16 w-auto mb-4"
-          />
-          <h1 className="text-2xl font-bold text-gray-900 mb-2">Welcome</h1>
-          <p className="text-gray-600">Please enter the password to continue</p>
-        </div>
-        
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100">
+      <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-lg">
+        <img 
+          src="/lovable-uploads/0a32041a-b5ba-43b3-808b-11f1f9068ecc.png" 
+          alt="Logo" 
+          className="mx-auto h-24 w-auto mb-8"
+        />
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <Input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter password"
-              className="w-full"
-              autoFocus
-            />
-          </div>
+          <Input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Enter password"
+            className="w-full"
+          />
           <Button type="submit" className="w-full">
-            Enter
+            Submit
           </Button>
         </form>
       </div>
