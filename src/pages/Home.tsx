@@ -39,14 +39,14 @@ const Home = () => {
 
   if (loading) {
     return (
-      <div className="fixed inset-0 flex items-center justify-center bg-white">
+      <div className="fixed inset-0 flex items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100">
         <div className="text-center">
           <img 
             src="/lovable-uploads/0a32041a-b5ba-43b3-808b-11f1f9068ecc.png" 
             alt="Logo" 
-            className="mx-auto h-32 w-auto mb-4 animate-bounce"
+            className="mx-auto h-32 w-auto mb-4 animate-bounce drop-shadow-lg"
           />
-          <div className="mt-4 animate-pulse">
+          <div className="mt-4 animate-pulse text-2xl font-semibold text-blue-600">
             Loading...
           </div>
         </div>
