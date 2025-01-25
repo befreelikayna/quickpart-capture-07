@@ -9,6 +9,7 @@ interface PhotoUploadProps {
 
 const PhotoUpload = ({ onPhotoSelect }: PhotoUploadProps) => {
   const [preview, setPreview] = useState<string | null>(null);
+  const cameraInputRef = useRef<HTMLInputElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -24,6 +25,12 @@ const PhotoUpload = ({ onPhotoSelect }: PhotoUploadProps) => {
   };
 
   const handleCameraClick = () => {
+    if (cameraInputRef.current) {
+      cameraInputRef.current.click();
+    }
+  };
+
+  const handleUploadClick = () => {
     if (fileInputRef.current) {
       fileInputRef.current.click();
     }
@@ -37,6 +44,13 @@ const PhotoUpload = ({ onPhotoSelect }: PhotoUploadProps) => {
         capture="environment"
         className="hidden"
         onChange={handleFileSelect}
+        ref={cameraInputRef}
+      />
+      <input
+        type="file"
+        accept="image/*"
+        className="hidden"
+        onChange={handleFileSelect}
         ref={fileInputRef}
       />
       
@@ -47,27 +61,53 @@ const PhotoUpload = ({ onPhotoSelect }: PhotoUploadProps) => {
             alt="Part preview"
             className="w-full h-full object-cover rounded-lg"
           />
-          <Button
-            variant="secondary"
-            className="absolute bottom-2 right-2"
-            onClick={handleCameraClick}
-          >
-            Retake
-          </Button>
+          <div className="absolute bottom-2 right-2 flex gap-2">
+            <Button
+              variant="secondary"
+              onClick={handleCameraClick}
+              className="shadow-lg"
+            >
+              <Camera className="mr-2 h-4 w-4" />
+              Retake
+            </Button>
+            <Button
+              variant="secondary"
+              onClick={handleUploadClick}
+              className="shadow-lg"
+            >
+              <Upload className="mr-2 h-4 w-4" />
+              Upload New
+            </Button>
+          </div>
         </div>
       ) : (
-        <div
-          className={cn(
-            "w-full aspect-video mb-4 border-2 border-dashed rounded-lg",
-            "flex flex-col items-center justify-center cursor-pointer",
-            "bg-muted hover:bg-muted/80 transition-colors"
-          )}
-          onClick={handleCameraClick}
-        >
-          <Camera className="h-12 w-12 mb-2 text-muted-foreground" />
-          <p className="text-sm text-muted-foreground">
-            Click to take a photo or upload
-          </p>
+        <div className="w-full aspect-video mb-4 grid grid-cols-2 gap-4">
+          <div
+            className={cn(
+              "col-span-1 border-2 border-dashed rounded-lg",
+              "flex flex-col items-center justify-center cursor-pointer",
+              "bg-muted hover:bg-muted/80 transition-colors"
+            )}
+            onClick={handleCameraClick}
+          >
+            <Camera className="h-12 w-12 mb-2 text-muted-foreground" />
+            <p className="text-sm font-medium text-muted-foreground">
+              Take a Photo
+            </p>
+          </div>
+          <div
+            className={cn(
+              "col-span-1 border-2 border-dashed rounded-lg",
+              "flex flex-col items-center justify-center cursor-pointer",
+              "bg-muted hover:bg-muted/80 transition-colors"
+            )}
+            onClick={handleUploadClick}
+          >
+            <Upload className="h-12 w-12 mb-2 text-muted-foreground" />
+            <p className="text-sm font-medium text-muted-foreground">
+              Upload Image
+            </p>
+          </div>
         </div>
       )}
     </div>
