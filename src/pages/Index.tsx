@@ -3,6 +3,7 @@ import { Globe, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import PartCard from '@/components/PartCard';
+import ExcelImport from '@/components/ExcelImport';
 import { DocumentedPart } from '@/types/parts';
 import {
   DropdownMenu,
@@ -54,7 +55,7 @@ const languageNames = {
   fr: 'Français'
 };
 
-const Index = ({ documentedParts, language, setLanguage }: IndexProps) => {
+const Index = ({ documentedParts, language, setLanguage, setDocumentedParts }: IndexProps) => {
   const t = translations[language];
   const [searchQuery, setSearchQuery] = React.useState('');
 
@@ -66,6 +67,10 @@ const Index = ({ documentedParts, language, setLanguage }: IndexProps) => {
   // Separate filtered parts by category
   const bladeParts = filteredParts.filter(part => part.type === 'blade');
   const marberParts = filteredParts.filter(part => part.type === 'marber');
+
+  const handleImport = (newParts: DocumentedPart[]) => {
+    setDocumentedParts(prev => [...prev, ...newParts]);
+  };
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-7xl">
@@ -113,7 +118,10 @@ const Index = ({ documentedParts, language, setLanguage }: IndexProps) => {
         <div className="space-y-12">
           {/* Blade Category */}
           <section>
-            <h2 className="text-2xl font-semibold mb-6">{t.bladeCategory}</h2>
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-2xl font-semibold">{t.bladeCategory}</h2>
+              <ExcelImport onImport={handleImport} type="blade" language={language} />
+            </div>
             {bladeParts.length === 0 ? (
               <p className="text-center text-muted-foreground">{t.noBladeItems}</p>
             ) : (
@@ -132,7 +140,10 @@ const Index = ({ documentedParts, language, setLanguage }: IndexProps) => {
 
           {/* Marber Category */}
           <section>
-            <h2 className="text-2xl font-semibold mb-6">{t.marberCategory}</h2>
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-2xl font-semibold">{t.marberCategory}</h2>
+              <ExcelImport onImport={handleImport} type="marber" language={language} />
+            </div>
             {marberParts.length === 0 ? (
               <p className="text-center text-muted-foreground">{t.noMarberItems}</p>
             ) : (
