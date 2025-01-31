@@ -1,6 +1,7 @@
 import React from 'react';
-import { Globe } from 'lucide-react';
+import { Globe, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import PartCard from '@/components/PartCard';
 import { DocumentedPart } from '@/types/parts';
 import {
@@ -24,7 +25,8 @@ const translations = {
     bladeCategory: 'Blade Parts',
     marberCategory: 'Marber Parts',
     noBladeItems: 'No blade parts documented yet',
-    noMarberItems: 'No marber parts documented yet'
+    noMarberItems: 'No marber parts documented yet',
+    searchPlaceholder: 'Search parts...'
   },
   ar: {
     title: 'المحفظة',
@@ -32,7 +34,8 @@ const translations = {
     bladeCategory: 'قطع الشفرة',
     marberCategory: 'قطع ماربر',
     noBladeItems: 'لم يتم توثيق أي قطع شفرة بعد',
-    noMarberItems: 'لم يتم توثيق أي قطع ماربر بعد'
+    noMarberItems: 'لم يتم توثيق أي قطع ماربر بعد',
+    searchPlaceholder: 'البحث عن القطع...'
   },
   fr: {
     title: 'Portfolio',
@@ -40,7 +43,8 @@ const translations = {
     bladeCategory: 'Pièces Lame',
     marberCategory: 'Pièces Marber',
     noBladeItems: 'Aucune pièce lame documentée',
-    noMarberItems: 'Aucune pièce marber documentée'
+    noMarberItems: 'Aucune pièce marber documentée',
+    searchPlaceholder: 'Rechercher des pièces...'
   }
 };
 
@@ -52,10 +56,16 @@ const languageNames = {
 
 const Index = ({ documentedParts, language, setLanguage }: IndexProps) => {
   const t = translations[language];
+  const [searchQuery, setSearchQuery] = React.useState('');
 
-  // Separate parts by category
-  const bladeParts = documentedParts.filter(part => part.type === 'blade');
-  const marberParts = documentedParts.filter(part => part.type === 'marber');
+  // Filter parts based on search query
+  const filteredParts = documentedParts.filter(part => 
+    part.data.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  // Separate filtered parts by category
+  const bladeParts = filteredParts.filter(part => part.type === 'blade');
+  const marberParts = filteredParts.filter(part => part.type === 'marber');
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-7xl">
@@ -83,6 +93,18 @@ const Index = ({ documentedParts, language, setLanguage }: IndexProps) => {
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
+      </div>
+
+      {/* Search Bar */}
+      <div className="relative mb-8">
+        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+        <Input
+          type="text"
+          placeholder={t.searchPlaceholder}
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="pl-10"
+        />
       </div>
 
       {documentedParts.length === 0 ? (
