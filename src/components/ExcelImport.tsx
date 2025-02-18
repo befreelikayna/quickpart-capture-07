@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { read, utils } from 'xlsx';
 import { Button } from './ui/button';
@@ -55,7 +56,7 @@ const ExcelImport = ({ onImport, type, language = 'en' }: ExcelImportProps) => {
       const jsonData = utils.sheet_to_json(worksheet);
 
       // Validate required columns
-      const requiredColumns = ['name', 'length', 'width', 'height', 'quantity', 'notes'];
+      const requiredColumns = ['name', 'length', 'width', 'height', 'quantity', 'notes', 'price'];
       const hasRequiredColumns = jsonData.length > 0 && 
         requiredColumns.every(col => Object.keys(jsonData[0]).includes(col));
 
@@ -73,7 +74,8 @@ const ExcelImport = ({ onImport, type, language = 'en' }: ExcelImportProps) => {
           width: row.width?.toString() || '0',
           height: row.height?.toString() || '0',
           quantity: row.quantity?.toString() || '1',
-          notes: row.notes?.toString() || ''
+          notes: row.notes?.toString() || '',
+          price: row.price?.toString() || '0'
         },
         image: '/placeholder.svg' // Default placeholder image
       }));
