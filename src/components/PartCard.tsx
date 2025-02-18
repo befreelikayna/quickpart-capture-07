@@ -57,7 +57,7 @@ const PartCard = ({ part, image, language = 'en' }: PartCardProps) => {
           </div>
           <div>
             <p className="text-muted-foreground">{t.price}</p>
-            <p>${part.price}</p>
+            <p>{part.price} DH</p>
           </div>
           {part.notes && (
             <div>
