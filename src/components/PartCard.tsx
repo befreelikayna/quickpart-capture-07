@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { PartFormData } from './PartForm';
@@ -12,17 +13,20 @@ const translations = {
   en: {
     dimensions: 'Dimensions',
     quantity: 'Quantity',
-    notes: 'Notes'
+    notes: 'Notes',
+    price: 'Price'
   },
   ar: {
     dimensions: 'الأبعاد',
     quantity: 'الكمية',
-    notes: 'ملاحظات'
+    notes: 'ملاحظات',
+    price: 'السعر'
   },
   fr: {
     dimensions: 'Dimensions',
     quantity: 'Quantité',
-    notes: 'Notes'
+    notes: 'Notes',
+    price: 'Prix'
   }
 };
 
@@ -50,6 +54,10 @@ const PartCard = ({ part, image, language = 'en' }: PartCardProps) => {
           <div>
             <p className="text-muted-foreground">{t.quantity}</p>
             <p>{part.quantity}</p>
+          </div>
+          <div>
+            <p className="text-muted-foreground">{t.price}</p>
+            <p>${part.price}</p>
           </div>
           {part.notes && (
             <div>

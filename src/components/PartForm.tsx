@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Input } from './ui/input';
@@ -18,6 +19,7 @@ export interface PartFormData {
   height: string;
   quantity: string;
   notes: string;
+  price: string;
 }
 
 const translations = {
@@ -29,6 +31,7 @@ const translations = {
     height: 'Height (cm)',
     quantity: 'Quantity',
     notes: 'Notes',
+    price: 'Price (USD)',
     documentPart: 'Document Part',
     enterPartName: 'Enter part name',
     additionalDetails: 'Additional details',
@@ -44,6 +47,7 @@ const translations = {
     height: 'الارتفاع (سم)',
     quantity: 'الكمية',
     notes: 'ملاحظات',
+    price: 'السعر (دولار)',
     documentPart: 'توثيق القطعة',
     enterPartName: 'أدخل اسم القطعة',
     additionalDetails: 'تفاصيل إضافية',
@@ -59,6 +63,7 @@ const translations = {
     height: 'Hauteur (cm)',
     quantity: 'Quantité',
     notes: 'Notes',
+    price: 'Prix (USD)',
     documentPart: 'Documenter la pièce',
     enterPartName: 'Entrez le nom de la pièce',
     additionalDetails: 'Détails supplémentaires',
@@ -140,6 +145,18 @@ const PartForm = ({ onSubmit, language = 'en', type }: PartFormProps) => {
             required
           />
         </div>
+      </div>
+
+      <div>
+        <Label htmlFor="price">{t.price}</Label>
+        <Input
+          id="price"
+          type="number"
+          step="0.01"
+          {...register('price')}
+          placeholder="0.00"
+          required
+        />
       </div>
 
       <div>
