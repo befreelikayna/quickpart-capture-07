@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -6,6 +7,7 @@ import {
   Hammer, 
   Grid3X3, 
   Calculator,
+  Github,
   Menu
 } from 'lucide-react';
 import {
@@ -19,19 +21,22 @@ const translations = {
     blade: 'Blade',
     marber: 'Marber',
     portfolio: 'Portfolio',
-    calculator: 'Calculator'
+    calculator: 'Calculator',
+    github: 'GitHub'
   },
   ar: {
     blade: 'شفرة',
     marber: 'ماربر',
     portfolio: 'المحفظة',
-    calculator: 'الحاسبة'
+    calculator: 'الحاسبة',
+    github: 'جيثب'
   },
   fr: {
     blade: 'Lame',
     marber: 'Marber',
     portfolio: 'Portfolio',
-    calculator: 'Calculatrice'
+    calculator: 'Calculatrice',
+    github: 'GitHub'
   }
 };
 
@@ -66,6 +71,15 @@ const Header = () => {
   
   const NavItems = () => (
     <>
+      <a href="https://github.com/befreelikayna/biost-product-galaxy.git" target="_blank" rel="noopener noreferrer">
+        <Button 
+          variant="ghost"
+          className="w-full justify-start md:w-auto"
+        >
+          <Github className="mr-2 h-4 w-4" />
+          {t.github}
+        </Button>
+      </a>
       <Link to="/blade">
         <Button 
           variant={location.pathname === '/blade' ? 'default' : 'ghost'}

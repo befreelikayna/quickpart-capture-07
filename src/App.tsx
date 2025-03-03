@@ -16,6 +16,7 @@ import BladePage from "./pages/BladePage";
 import MarberPortfolio from "./pages/MarberPortfolio";
 import BladePortfolio from "./pages/BladePortfolio";
 import Calculator from "./pages/Calculator";
+import GitHubPage from "./pages/GitHubPage";
 import { DocumentedPart } from "./types/parts";
 import { 
   loadMarberParts, 
@@ -115,6 +116,7 @@ const App = () => {
           <Header />
           <Routes>
             <Route path="/home" element={<Home />} />
+            <Route path="/github" element={<GitHubPage />} />
             <Route path="/calculator" element={<Calculator />} />
             <Route path="/" element={<Index documentedParts={[...marberParts, ...bladeParts]} setDocumentedParts={() => {}} language={language} setLanguage={setLanguage} />} />
             <Route path="/portfolio" element={<Portfolio documentedParts={[...marberParts, ...bladeParts]} setDocumentedParts={() => {}} language={language} />} />
