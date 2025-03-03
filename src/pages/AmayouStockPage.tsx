@@ -57,6 +57,8 @@ const AmayouStockPage = () => {
         src="https://biostonestock.vercel.app/" 
         title="Amayou Stock"
         className="w-full h-full border-none"
+        sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       />
     </div>
   );
