@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -70,15 +71,15 @@ const Header = () => {
   
   const NavItems = () => (
     <>
-      <a href="https://biostonestock.vercel.app/" target="_blank" rel="noopener noreferrer">
+      <Link to="/amayou-stock">
         <Button 
-          variant="ghost"
+          variant={location.pathname === '/amayou-stock' ? 'default' : 'ghost'}
           className="w-full justify-start md:w-auto"
         >
           <Package className="mr-2 h-4 w-4" />
           {t.amayouStock}
         </Button>
-      </a>
+      </Link>
       <Link to="/blade">
         <Button 
           variant={location.pathname === '/blade' ? 'default' : 'ghost'}

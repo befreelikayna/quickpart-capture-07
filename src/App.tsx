@@ -16,6 +16,7 @@ import BladePage from "./pages/BladePage";
 import MarberPortfolio from "./pages/MarberPortfolio";
 import BladePortfolio from "./pages/BladePortfolio";
 import Calculator from "./pages/Calculator";
+import AmayouStockPage from "./pages/AmayouStockPage";
 import { DocumentedPart } from "./types/parts";
 import { 
   loadMarberParts, 
@@ -116,6 +117,7 @@ const App = () => {
           <Routes>
             <Route path="/home" element={<Home />} />
             <Route path="/calculator" element={<Calculator />} />
+            <Route path="/amayou-stock" element={<AmayouStockPage />} />
             <Route path="/" element={<Index documentedParts={[...marberParts, ...bladeParts]} setDocumentedParts={() => {}} language={language} setLanguage={setLanguage} />} />
             <Route path="/portfolio" element={<Portfolio documentedParts={[...marberParts, ...bladeParts]} setDocumentedParts={() => {}} language={language} />} />
             <Route path="/marber" element={<MarberPage documentedParts={marberParts} setDocumentedParts={setMarberParts} language={language} setLanguage={setLanguage} />} />
