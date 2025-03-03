@@ -6,7 +6,8 @@ import {
   Hammer, 
   Grid3X3, 
   Calculator,
-  Menu
+  Menu,
+  Package
 } from 'lucide-react';
 import {
   Sheet,
@@ -19,19 +20,22 @@ const translations = {
     blade: 'Blade',
     marber: 'Marber',
     portfolio: 'Portfolio',
-    calculator: 'Calculator'
+    calculator: 'Calculator',
+    amayouStock: 'Amayou Stock'
   },
   ar: {
     blade: 'شفرة',
     marber: 'ماربر',
     portfolio: 'المحفظة',
-    calculator: 'الحاسبة'
+    calculator: 'الحاسبة',
+    amayouStock: 'مخزون أمايو'
   },
   fr: {
     blade: 'Lame',
     marber: 'Marber',
     portfolio: 'Portfolio',
-    calculator: 'Calculatrice'
+    calculator: 'Calculatrice',
+    amayouStock: 'Stock Amayou'
   }
 };
 
@@ -66,6 +70,15 @@ const Header = () => {
   
   const NavItems = () => (
     <>
+      <a href="https://biostonestock.vercel.app/" target="_blank" rel="noopener noreferrer">
+        <Button 
+          variant="ghost"
+          className="w-full justify-start md:w-auto"
+        >
+          <Package className="mr-2 h-4 w-4" />
+          {t.amayouStock}
+        </Button>
+      </a>
       <Link to="/blade">
         <Button 
           variant={location.pathname === '/blade' ? 'default' : 'ghost'}
